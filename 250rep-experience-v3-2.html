@@ -1,0 +1,3296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="theme-color" content="#050B1F" />
+<title>250 Reps Experience — Register</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- EmailJS for sending registration data -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <!-- html2canvas for pass download as image -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Baloo 2', sans-serif;
+    background: #050B1F;
+    color: #fff;
+    overflow-x: hidden;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== CSS VARIABLES ===== */
+  :root {
+    --blue: #2563EB;
+    --blue-glow: #60A5FA;
+    --yellow: #EAB308;
+    --yellow-glow: #FDE047;
+    --red: #DC2626;
+    --red-glow: #F87171;
+    --white: #FFFFFF;
+    --black: #000000;
+    --deep: #050B1F;
+    --card-bg: rgba(255,255,255,0.03);
+    --border: rgba(255,255,255,0.08);
+    --squad-hex: #2563EB;
+    --squad-glow: #60A5FA;
+    --neon-cyan: #00F5FF;
+    --neon-pink: #FF006E;
+    --gold: #FFD700;
+    --silver: #C0C0C0;
+  }
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: #050B1F; }
+  ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 3px; }
+
+  /* ===== KEYFRAMES ===== */
+  @keyframes float {
+    0%,100% { transform: translateY(0) scale(1); }
+    50%      { transform: translateY(-30px) scale(1.05); }
+  }
+  @keyframes drift {
+    0%   { transform: translateY(0) translateX(0);    opacity: 0; }
+    10%  { opacity: 0.7; }
+    90%  { opacity: 0.7; }
+    100% { transform: translateY(-120vh) translateX(30px); opacity: 0; }
+  }
+  @keyframes glitch {
+    0%,90%,100% { transform: none; filter: none; }
+    92%  { transform: skewX(-2deg); filter: hue-rotate(90deg); }
+    94%  { transform: skewX(2deg);  filter: hue-rotate(-90deg); }
+    96%  { transform: none; }
+  }
+  @keyframes pulse-ring {
+    0%   { transform: scale(0.85); opacity: 1; }
+    100% { transform: scale(2.2);  opacity: 0; }
+  }
+  @keyframes scanline {
+    0%   { top: -10%; }
+    100% { top: 110%; }
+  }
+  @keyframes appear {
+    from { opacity: 0; transform: translateY(36px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes appear-scale {
+    from { opacity: 0; transform: scale(0.88) translateY(20px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes flicker {
+    0%,100% { opacity: 1; }
+    92% { opacity: 1; }
+    93% { opacity: 0.4; }
+    95% { opacity: 1; }
+    97% { opacity: 0.6; }
+    98% { opacity: 1; }
+  }
+  @keyframes pass-in {
+    from { opacity: 0; transform: rotateY(-25deg) translateY(60px) scale(0.82); }
+    to   { opacity: 1; transform: rotateY(0)       translateY(0)    scale(1);    }
+  }
+  @keyframes confetti-fall {
+    0%   { transform: translateY(-20px) rotate(0deg);   opacity: 1; }
+    100% { transform: translateY(110vh) rotate(720deg);  opacity: 0; }
+  }
+  @keyframes border-spin {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    20% { transform: translateX(-6px); }
+    40% { transform: translateX(6px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+  }
+  @keyframes bounce-in {
+    0%   { transform: scale(0); opacity: 0; }
+    60%  { transform: scale(1.15); }
+    80%  { transform: scale(0.95); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  @keyframes ripple {
+    to { transform: scale(4); opacity: 0; }
+  }
+  @keyframes step-active {
+    0%,100% { transform: scale(1); }
+    50%     { transform: scale(1.12); }
+  }
+  @keyframes aurora {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  @keyframes shimmer {
+    0%   { transform: translateX(-200%) skewX(-15deg); }
+    100% { transform: translateX(400%)  skewX(-15deg); }
+  }
+  @keyframes neon-pulse {
+    0%,100% { text-shadow: 0 0 10px #fff, 0 0 20px #2563EB, 0 0 40px #2563EB, 0 0 60px #2563EB; }
+    50%     { text-shadow: 0 0 5px #fff,  0 0 10px #EAB308, 0 0 25px #EAB308, 0 0 45px #EAB308; }
+  }
+  @keyframes tilt-hover {
+    0%   { transform: perspective(600px) rotateY(0deg) rotateX(0deg); }
+    25%  { transform: perspective(600px) rotateY(3deg) rotateX(-2deg); }
+    50%  { transform: perspective(600px) rotateY(-3deg) rotateX(2deg); }
+    75%  { transform: perspective(600px) rotateY(2deg) rotateX(-1deg); }
+    100% { transform: perspective(600px) rotateY(0deg) rotateX(0deg); }
+  }
+  @keyframes streak {
+    0%   { transform: translateX(-100%) scaleX(0); opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 1; }
+    100% { transform: translateX(100vw) scaleX(1); opacity: 0; }
+  }
+  @keyframes glow-border {
+    0%,100% { box-shadow: 0 0 6px #2563EB, 0 0 14px #2563EB; }
+    33%     { box-shadow: 0 0 6px #EAB308, 0 0 14px #EAB308; }
+    66%     { box-shadow: 0 0 6px #DC2626, 0 0 14px #DC2626; }
+  }
+  @keyframes text-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ===== UTILITY ===== */
+  .mono { font-family: 'Space Mono', monospace; }
+  .hidden { display: none !important; }
+
+  /* ===== BACKGROUND ORBS ===== */
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.16;
+    animation: float 9s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  /* ===== PARTICLES ===== */
+  .particle {
+    position: absolute;
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    opacity: 0.65;
+    animation: drift linear infinite;
+    pointer-events: none;
+  }
+
+  /* ===== SCANLINE ===== */
+  .scanline-wrap { position: absolute; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
+  .scanline-bar  { position: absolute; left: 0; right: 0; height: 2px; background: rgba(37,99,235,0.14); animation: scanline 4s linear infinite; }
+
+  /* ===== SCREENS ===== */
+  .screen { min-height: 100vh; min-height: -webkit-fill-available; position: relative; overflow: hidden; }
+
+  /* ===== HERO ===== */
+  #screen-hero {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 48px 20px;
+  }
+  .hero-badge {
+    background: rgba(37,99,235,0.15);
+    border: 1px solid rgba(37,99,235,0.4);
+    border-radius: 12px;
+    padding: 8px 20px;
+    margin-bottom: 24px;
+    color: #93C5FD;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    animation: flicker 4s infinite;
+  }
+  .hero-title {
+    font-size: clamp(54px, 14vw, 128px);
+    font-weight: 900;
+    line-height: 0.93;
+    text-shadow: 0 0 60px rgba(37,99,235,0.5);
+    animation: glitch 6s infinite;
+    margin-bottom: 6px;
+  }
+  .hero-title .yellow { color: #EAB308; text-shadow: 0 0 40px rgba(234,179,8,0.65); }
+  .hero-sub {
+    font-size: clamp(34px, 8vw, 76px);
+    font-weight: 900; line-height: 1; margin-bottom: 4px;
+  }
+  .hero-sub .blue { color: #2563EB; text-shadow: 0 0 30px rgba(37,99,235,0.85); }
+  .hero-tagline {
+    color: #93C5FD; font-size: clamp(13px, 3vw, 18px);
+    font-weight: 700; letter-spacing: 0.22em;
+    text-transform: uppercase; margin-bottom: 40px;
+  }
+  .event-chips {
+    display: flex; flex-wrap: wrap; gap: 12px;
+    justify-content: center; margin-bottom: 44px;
+  }
+  .event-chip {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px; padding: 12px 20px;
+    font-size: 15px; font-weight: 700;
+    display: flex; align-items: center; gap: 8px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+  }
+  .event-chip:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+  .activity-tags {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    justify-content: center; margin-bottom: 52px;
+  }
+  .activity-tag {
+    background: rgba(234,179,8,0.15);
+    border: 1px solid rgba(234,179,8,0.3);
+    border-radius: 8px; padding: 6px 14px;
+    color: #FDE047; font-size: 13px; font-weight: 700;
+    transition: all 0.25s ease;
+  }
+  .activity-tag:hover { background: rgba(234,179,8,0.25); transform: scale(1.05); }
+
+  /* CTA pulse wrapper */
+  .cta-wrap { position: relative; display: inline-block; }
+  .pulse-ring {
+    position: absolute; inset: -8px;
+    border-radius: 20px;
+    border: 2px solid #2563EB;
+    animation: pulse-ring 2s infinite;
+    pointer-events: none;
+  }
+  .cta-btn {
+    background: linear-gradient(135deg, #2563EB, #1D4ED8);
+    border: none; border-radius: 16px;
+    padding: 20px 60px;
+    color: white; font-size: 20px; font-weight: 900;
+    cursor: pointer; font-family: 'Baloo 2', sans-serif;
+    letter-spacing: 0.05em;
+    box-shadow: 0 0 40px rgba(37,99,235,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
+    transition: all 0.3s ease; position: relative; overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  .cta-btn::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.18) 50%, transparent 70%);
+    transform: translateX(-100%); transition: transform 0.5s ease;
+  }
+  .cta-btn:hover::after { transform: translateX(100%); }
+  .cta-btn:hover  { transform: translateY(-3px); filter: brightness(1.12); }
+  .cta-btn:active { transform: translateY(0); filter: brightness(0.95); }
+
+  /* ===== PROGRESS STEPS ===== */
+  .progress-bar {
+    display: flex; align-items: center;
+    justify-content: center; gap: 0;
+    padding: 20px 24px; margin-bottom: 8px;
+  }
+  .step-dot {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 800;
+    transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    position: relative; z-index: 2;
+    cursor: default;
+  }
+  .step-dot.done     { background: #2563EB; color: white; box-shadow: 0 0 16px rgba(37,99,235,0.6); }
+  .step-dot.active   { background: #EAB308; color: #050B1F; box-shadow: 0 0 20px rgba(234,179,8,0.7); animation: step-active 1.5s ease-in-out infinite; }
+  .step-dot.inactive { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.3); }
+  .step-line {
+    flex: 1; height: 2px; max-width: 60px;
+    background: rgba(255,255,255,0.08);
+    transition: background 0.4s ease;
+  }
+  .step-line.done { background: #2563EB; box-shadow: 0 0 8px rgba(37,99,235,0.4); }
+
+  /* ===== FORM SCREEN ===== */
+  #screen-form { background: #050B1F; }
+  .form-header {
+    background: rgba(5,11,31,0.85);
+    backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(37,99,235,0.2);
+    padding: 16px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .form-logo { font-weight: 900; font-size: 20px; }
+  .form-logo span { color: #EAB308; }
+  .form-meta { font-size: 11px; color: rgba(255,255,255,0.4); }
+  .form-inner { max-width: 600px; margin: 0 auto; padding: 40px 20px 100px; }
+  .form-hero-tag {
+    background: rgba(37,99,235,0.15);
+    border: 1px solid rgba(37,99,235,0.3);
+    border-radius: 8px; padding: 6px 16px;
+    display: inline-block; color: #93C5FD;
+    font-size: 11px; letter-spacing: 0.16em; margin-bottom: 16px;
+  }
+  .form-title { font-size: clamp(32px,8vw,56px); font-weight: 900; line-height: 1; margin-bottom: 6px; }
+  .form-title span { color: #EAB308; }
+  .form-subtitle { color: rgba(255,255,255,0.5); font-size: 15px; margin-bottom: 36px; }
+  .form-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 24px;
+    padding: clamp(24px,5vw,40px);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    transition: border-color 0.3s ease;
+  }
+
+  /* Section titles */
+  .section-title {
+    font-size: 16px; font-weight: 800; color: white;
+    margin-bottom: 18px; display: flex; align-items: center; gap: 8px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  /* Fields */
+  .field-group { margin-bottom: 18px; animation: appear 0.45s ease both; }
+  .field-label {
+    display: block; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.12em; margin-bottom: 7px;
+    text-transform: uppercase;
+  }
+  .field-label.normal { color: rgba(255,255,255,0.6); }
+  .field-label.error  { color: #F87171; }
+
+  .field-input, .field-select {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1.5px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 14px 16px;
+    color: white; font-size: 15px; font-weight: 600;
+    font-family: 'Baloo 2', sans-serif;
+    outline: none;
+    transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+    -webkit-appearance: none; appearance: none;
+  }
+  .field-input::placeholder { color: rgba(255,255,255,0.25); }
+  .field-input:focus, .field-select:focus {
+    border-color: #2563EB !important;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.22) !important;
+    background: rgba(37,99,235,0.07) !important;
+  }
+  .field-input.has-error, .field-select.has-error {
+    border-color: #F87171 !important;
+    box-shadow: 0 0 0 3px rgba(248,113,113,0.15) !important;
+  }
+  .field-input.has-value { border-color: rgba(37,99,235,0.4); }
+  .field-select option { background: #0F172A; color: white; }
+  .field-select:disabled { opacity: 0.45; cursor: not-allowed; }
+
+  .select-wrapper { position: relative; }
+  .select-arrow {
+    position: absolute; right: 14px; top: 50%;
+    transform: translateY(-50%); pointer-events: none;
+    color: rgba(255,255,255,0.4); font-size: 12px;
+    transition: transform 0.2s;
+  }
+
+  .field-error {
+    color: #F87171; font-size: 12px;
+    margin-top: 5px; display: flex; align-items: center; gap: 4px;
+  }
+
+  /* Squad grid */
+  .squad-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px,1fr));
+    gap: 11px; margin-bottom: 10px;
+  }
+  .squad-btn {
+    background: rgba(255,255,255,0.03);
+    border: 2px solid rgba(255,255,255,0.08);
+    border-radius: 14px; padding: 14px 10px;
+    cursor: pointer; text-align: center;
+    transition: all 0.28s cubic-bezier(0.34,1.56,0.64,1);
+    font-family: 'Baloo 2', sans-serif;
+    position: relative; overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  .squad-btn::before {
+    content: ''; position: absolute; inset: 0;
+    background: var(--sq-hex, #2563EB);
+    opacity: 0; transition: opacity 0.25s;
+  }
+  .squad-btn:hover { transform: scale(1.06); }
+  .squad-btn:hover::before { opacity: 0.06; }
+  .squad-btn.selected::before { opacity: 0.12; }
+  .squad-btn.selected { transform: scale(1.05); }
+  .squad-emoji { font-size: 24px; margin-bottom: 5px; display: block; position: relative; z-index: 1; }
+  .squad-swatch {
+    width: 28px; height: 28px; border-radius: 50%;
+    margin: 0 auto 7px; position: relative; z-index: 1;
+    transition: box-shadow 0.25s;
+  }
+  .squad-name { font-size: 12px; font-weight: 800; color: white; position: relative; z-index: 1; }
+  .squad-sub  { font-size: 10px; color: rgba(255,255,255,0.4); position: relative; z-index: 1; }
+
+  /* Squad count badge */
+  .squad-count {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px; font-weight: 700;
+    color: rgba(255,255,255,0.45);
+    margin-top: 4px;
+    position: relative; z-index: 1;
+    letter-spacing: 0.05em;
+  }
+  .squad-count.almost { color: #F87171; }
+  .squad-count.ok     { color: #34D399; }
+
+  /* Dark-text squad (Ghost White) */
+  .squad-btn.dark-text .squad-name { color: #111; }
+  .squad-btn.dark-text .squad-sub  { color: rgba(0,0,0,0.45); }
+  .squad-btn.dark-text .squad-count { color: rgba(0,0,0,0.4); }
+  .squad-btn.dark-text .squad-count.almost { color: #c0392b; }
+  .squad-btn.dark-text .squad-count.ok     { color: #1a7a4a; }
+
+  /* Squad full — hidden */
+  .squad-btn.squad-full { display: none !important; }
+
+  /* Total capacity bar */
+  .capacity-bar-wrap {
+    margin-bottom: 18px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px;
+    padding: 12px 16px;
+  }
+  .capacity-bar-label {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 11px; font-weight: 700;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 8px;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 0.08em;
+  }
+  .capacity-bar-label span { color: #EAB308; }
+  .capacity-bar-track {
+    width: 100%; height: 6px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 99px; overflow: hidden;
+  }
+  .capacity-bar-fill {
+    height: 100%; border-radius: 99px;
+    background: linear-gradient(90deg, #059669, #EAB308, #DC2626);
+    transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1);
+  }
+
+  /* Submit btn */
+  .submit-btn {
+    margin-top: 32px; width: 100%;
+    background: linear-gradient(135deg, #2563EB, #1D4ED8);
+    border: none; border-radius: 16px; padding: 18px;
+    color: white; font-size: 18px; font-weight: 900;
+    cursor: pointer; font-family: 'Baloo 2', sans-serif;
+    letter-spacing: 0.05em;
+    box-shadow: 0 0 40px rgba(37,99,235,0.4), inset 0 1px 0 rgba(255,255,255,0.15);
+    transition: all 0.3s ease; position: relative; overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  .submit-btn:hover { transform: translateY(-3px); filter: brightness(1.12); box-shadow: 0 8px 50px rgba(37,99,235,0.55), inset 0 1px 0 rgba(255,255,255,0.15); }
+  .submit-btn:active { transform: translateY(0); filter: brightness(0.95); }
+  .submit-btn.shake { animation: shake 0.4s ease; }
+
+  /* Ripple */
+  .ripple-effect {
+    position: absolute; border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    transform: scale(0); animation: ripple 0.6s linear;
+    pointer-events: none;
+  }
+
+  /* ===== PASS SCREEN ===== */
+  #screen-pass {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 40px 20px 60px; min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+  .pass-success-badge {
+    color: #93C5FD; font-size: 12px;
+    letter-spacing: 0.22em; margin-bottom: 24px;
+    text-align: center;
+    animation: appear 0.5s ease;
+  }
+  .pass-card-outer {
+    width: 100%; max-width: 488px; position: relative;
+    opacity: 0;
+  }
+  .pass-card-outer.animated { animation: pass-in 0.85s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+  .pass-border-ring {
+    position: absolute; inset: -2.5px; border-radius: 25px;
+    background-size: 200% 200%;
+    animation: border-spin 3.5s linear infinite;
+    z-index: 0;
+  }
+  .pass-inner {
+    position: relative; z-index: 1;
+    background: #0A1628; border-radius: 22px; overflow: hidden;
+  }
+  .pass-top-band {
+    padding: 24px 28px 20px; position: relative; overflow: hidden;
+  }
+  .pass-top-hatch {
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.09) 10px, rgba(0,0,0,0.09) 20px);
+  }
+  .pass-top-content { position: relative; }
+  .pass-top-label { font-size: 11px; letter-spacing: 0.22em; color: rgba(255,255,255,0.72); margin-bottom: 4px; }
+  .pass-top-title { font-size: 28px; font-weight: 600; color: white; line-height: 1; text-shadow: 0 2px 20px rgba(0,0,0,0.35); letter-spacing: 0.04em; }
+  .pass-top-sub { font-size: 14px; color: rgba(255,255,255,0.87); font-weight: 700; margin-top: 4px; }
+  .pass-divider {
+    display: flex; align-items: center; position: relative; height: 0;
+  }
+  .pass-hole {
+    width: 20px; height: 20px; border-radius: 50%;
+    background: #050B1F; position: absolute; z-index: 2;
+  }
+  .pass-hole.left  { left: -10px; }
+  .pass-hole.right { right: -10px; }
+  .pass-dash { flex: 1; border-top: 2px dashed rgba(255,255,255,0.1); margin: 0 16px; }
+  .pass-body { padding: 24px 28px; }
+  .pass-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  .pass-field-label { font-size: 9px; letter-spacing: 0.22em; color: rgba(255,255,255,0.4); margin-bottom: 3px; }
+  .pass-field-value { font-size: 14px; font-weight: 800; color: white; word-break: break-word; }
+  .pass-field-value.small { font-size: 13px; }
+  .pass-full { grid-column: 1 / -1; }
+  .squad-bar {
+    border-radius: 10px; padding: 10px 14px; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .squad-bar-swatch { width: 32px; height: 32px; border-radius: 8px; }
+  .squad-bar-label  { font-size: 10px; letter-spacing: 0.16em; color: rgba(255,255,255,0.4); margin-bottom: 2px; }
+  .squad-bar-name   { font-size: 15px; font-weight: 800; color: white; }
+  .pass-bottom-row { display: flex; justify-content: space-between; align-items: flex-end; }
+  .pass-id-label  { font-size: 9px; letter-spacing: 0.22em; color: rgba(255,255,255,0.4); margin-bottom: 4px; }
+  .pass-id-value  { font-size: 18px; font-weight: 700; letter-spacing: 0.1em; }
+  .pass-id-time   { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 4px; }
+  .qr-grid {
+    width: 64px; height: 64px;
+    border-radius: 8px; padding: 6px;
+    display: grid; grid-template-columns: repeat(5,1fr); gap: 2px;
+  }
+  .qr-cell { border-radius: 1px; }
+  .pass-footer {
+    border-top-width: 1px; border-top-style: solid;
+    padding: 12px 28px; text-align: center;
+  }
+  .pass-footer-text { font-size: 11px; color: rgba(255,255,255,0.4); }
+  .pass-footer-email { }
+
+  /* Action buttons */
+  .action-btns {
+    display: flex; gap: 12px; margin-top: 24px;
+    flex-wrap: wrap; justify-content: center;
+    animation: appear 0.8s 0.5s ease both;
+  }
+  .action-btn {
+    border-radius: 12px; padding: 14px 28px;
+    color: white; font-size: 15px; font-weight: 800;
+    cursor: pointer; font-family: 'Baloo 2', sans-serif;
+    text-decoration: none; display: inline-block;
+    transition: all 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  .action-btn:hover { transform: translateY(-3px); }
+  .action-btn-secondary {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .action-btn-secondary:hover { background: rgba(255,255,255,0.12); }
+  .pass-hint { margin-top: 14px; color: rgba(255,255,255,0.3); font-size: 12px; text-align: center; }
+
+  /* Confetti */
+  .confetti-piece {
+    position: fixed; top: -20px;
+    animation: confetti-fall linear forwards;
+    z-index: 10; pointer-events: none;
+  }
+
+  /* ===== TOAST ===== */
+  #toast {
+    position: fixed; bottom: 28px; left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: rgba(15,23,42,0.95);
+    border: 1px solid rgba(37,99,235,0.4);
+    border-radius: 14px; padding: 14px 24px;
+    color: white; font-size: 14px; font-weight: 700;
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    z-index: 9999; white-space: nowrap;
+    transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    pointer-events: none;
+  }
+  #toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* ===== FOCUS VISIBLE ===== */
+  :focus-visible { outline: 2px solid #2563EB; outline-offset: 3px; }
+
+  /* ===== EXPERIENCE SECTIONS ===== */
+  .exp-section {
+    padding: 80px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .exp-section-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .exp-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: #60A5FA;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .exp-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: #2563EB;
+  }
+  .exp-h2 {
+    font-size: clamp(32px, 7vw, 56px);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 16px;
+  }
+  .exp-h2 .acc { color: #EAB308; }
+  .exp-desc {
+    color: rgba(255,255,255,0.6);
+    font-size: clamp(15px, 3vw, 18px);
+    line-height: 1.7;
+    margin-bottom: 40px;
+    font-weight: 500;
+  }
+
+  /* ABOUT SECTION */
+  #screen-about { background: #060D22; }
+  .about-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+  .about-pill {
+    background: rgba(37,99,235,0.12);
+    border: 1px solid rgba(37,99,235,0.3);
+    border-radius: 100px;
+    padding: 10px 22px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #93C5FD;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .vibes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  .vibe-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 20px;
+    padding: 28px 22px;
+    transition: all 0.3s ease;
+    cursor: default;
+  }
+  .vibe-card:hover {
+    background: rgba(37,99,235,0.08);
+    border-color: rgba(37,99,235,0.3);
+    transform: translateY(-4px);
+  }
+  .vibe-icon { font-size: 36px; margin-bottom: 12px; display: block; }
+  .vibe-title { font-size: 18px; font-weight: 800; margin-bottom: 6px; }
+  .vibe-text { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+  /* BONDING SECTION */
+  #screen-bonding { background: #050B1F; }
+  .bonding-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(37,99,235,0.4), rgba(234,179,8,0.4), transparent);
+    margin-bottom: 60px;
+  }
+  .bonding-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+  .bonding-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 18px;
+    padding: 24px 22px;
+    transition: all 0.3s ease;
+  }
+  .bonding-item:hover {
+    border-color: rgba(37,99,235,0.25);
+    background: rgba(37,99,235,0.05);
+    transform: translateX(6px);
+  }
+  .bonding-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 28px;
+    font-weight: 700;
+    color: rgba(37,99,235,0.4);
+    min-width: 44px;
+    line-height: 1;
+  }
+  .bonding-title { font-size: 17px; font-weight: 800; margin-bottom: 5px; }
+  .bonding-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.65; }
+
+  /* GAMES & FOOD SECTION */
+  #screen-games { background: #060D22; }
+  .games-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  @media (max-width: 500px) {
+    .games-grid { grid-template-columns: 1fr; }
+  }
+  .games-col-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .game-item, .food-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .game-item:last-child, .food-item:last-child { border-bottom: none; }
+  .gi-icon { font-size: 26px; flex-shrink: 0; }
+  .gi-name { font-size: 14px; font-weight: 800; }
+  .gi-sub  { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 1px; }
+  .prize-banner {
+    background: linear-gradient(135deg, rgba(234,179,8,0.12), rgba(37,99,235,0.08));
+    border: 1px solid rgba(234,179,8,0.3);
+    border-radius: 16px;
+    padding: 22px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .prize-icon { font-size: 40px; flex-shrink: 0; }
+  .prize-title { font-size: 17px; font-weight: 900; color: #FDE047; margin-bottom: 4px; }
+  .prize-desc  { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.5; }
+
+  /* LINEUP / SCHEDULE SECTION */
+  #screen-lineup { background: #050B1F; }
+  .timeline {
+    position: relative;
+    padding-left: 32px;
+    margin-bottom: 48px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: linear-gradient(180deg, #2563EB, #EAB308, rgba(255,255,255,0.1));
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 28px;
+    padding: 20px 22px;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+  }
+  .tl-item:hover {
+    border-color: rgba(37,99,235,0.3);
+    background: rgba(37,99,235,0.05);
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -28px;
+    top: 24px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #2563EB;
+    box-shadow: 0 0 12px rgba(37,99,235,0.8);
+  }
+  .tl-time {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: #EAB308;
+    letter-spacing: 0.15em;
+    margin-bottom: 5px;
+  }
+  .tl-title { font-size: 16px; font-weight: 800; margin-bottom: 4px; }
+  .tl-desc  { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+  /* CTA → Register Banner */
+  .reg-cta-section {
+    background: linear-gradient(135deg, rgba(37,99,235,0.15), rgba(234,179,8,0.08), rgba(37,99,235,0.1));
+    border-top: 1px solid rgba(37,99,235,0.2);
+    border-bottom: 1px solid rgba(234,179,8,0.15);
+    padding: 72px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .reg-cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(37,99,235,0.1), transparent);
+    pointer-events: none;
+  }
+  .reg-cta-inner { position: relative; z-index: 1; }
+  .reg-cta-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: #EAB308;
+    margin-bottom: 16px;
+  }
+  .reg-cta-title {
+    font-size: clamp(34px, 8vw, 64px);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 16px;
+  }
+  .reg-cta-sub {
+    color: rgba(255,255,255,0.55);
+    font-size: clamp(14px, 2.5vw, 17px);
+    margin-bottom: 40px;
+    max-width: 460px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 480px) {
+    .squad-grid { grid-template-columns: repeat(2, 1fr); }
+    .pass-grid  { grid-template-columns: 1fr; }
+    .pass-full  { grid-column: auto; }
+    .cta-btn    { padding: 18px 40px; font-size: 18px; }
+    .action-btns { flex-direction: column; align-items: center; }
+    .action-btn  { width: 100%; text-align: center; }
+  }
+  @media (max-width: 360px) {
+    .squad-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-title { font-size: 50px; }
+  }
+
+  /* Separator */
+  .section-sep { margin-top: 32px; }
+
+  /* Other / custom input reveal */
+  .other-input-wrap {
+    overflow: hidden;
+    animation: appear 0.3s ease both;
+  }
+  .other-input-wrap.hidden { display: none !important; }
+
+  /* Character counter */
+  .char-count { font-size: 10px; color: rgba(255,255,255,0.3); float: right; margin-top: 4px; }
+
+  /* ===== AURORA BG ===== */
+  .aurora-bg {
+    position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background: linear-gradient(120deg, #050B1F 0%, #0D1B4B 20%, #1a0533 40%, #0a1f1f 60%, #050B1F 80%);
+    background-size: 400% 400%;
+    animation: aurora 12s ease infinite;
+  }
+  @keyframes aurora {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  @keyframes shimmer {
+    0%   { transform: translateX(-200%) skewX(-15deg); }
+    100% { transform: translateX(400%)  skewX(-15deg); }
+  }
+  @keyframes neon-pulse {
+    0%,100% { text-shadow: 0 0 10px #fff, 0 0 20px #2563EB, 0 0 40px #2563EB, 0 0 60px #2563EB; }
+    50%     { text-shadow: 0 0 5px #fff,  0 0 10px #EAB308, 0 0 25px #EAB308, 0 0 45px #EAB308; }
+  }
+  @keyframes streak {
+    0%   { transform: translateX(-100%) scaleX(0); opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 1; }
+    100% { transform: translateX(100vw) scaleX(1); opacity: 0; }
+  }
+  @keyframes glow-border {
+    0%,100% { box-shadow: 0 0 8px rgba(37,99,235,0.5), inset 0 0 8px rgba(37,99,235,0.1); }
+    33%     { box-shadow: 0 0 8px rgba(234,179,8,0.5), inset 0 0 8px rgba(234,179,8,0.1); }
+    66%     { box-shadow: 0 0 8px rgba(220,38,38,0.5), inset 0 0 8px rgba(220,38,38,0.1); }
+  }
+  @keyframes text-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ===== LIGHT STREAKS ===== */
+  .streak {
+    position: absolute; height: 1px; width: 120px;
+    background: linear-gradient(90deg, transparent, rgba(37,99,235,0.9), transparent);
+    animation: streak linear infinite;
+    pointer-events: none;
+  }
+
+  /* ===== TICKER TAPE ===== */
+  .ticker-wrap {
+    overflow: hidden; width: 100%;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    background: rgba(0,0,0,0.3);
+    padding: 10px 0; position: relative; z-index: 5;
+  }
+  .ticker-inner {
+    display: flex; gap: 0;
+    width: max-content;
+    animation: text-scroll 28s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker-item {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px; letter-spacing: 0.18em;
+    color: rgba(255,255,255,0.45);
+    padding: 0 32px;
+  }
+  .ticker-item .t-dot { color: #EAB308; margin: 0 8px; }
+
+  /* ===== SHIMMER CARDS ===== */
+  .vibe-card { overflow: hidden; position: relative; }
+  .vibe-card::after {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 40%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+    transform: translateX(-200%) skewX(-15deg);
+  }
+  .vibe-card:hover::after {
+    animation: shimmer 0.7s ease forwards;
+  }
+
+  /* ===== GLOW BORDER CARDS ===== */
+  .bonding-item:hover { animation: glow-border 2s linear infinite; border-color: transparent !important; }
+
+  /* ===== NEON ACCENT LINE ===== */
+  .neon-line {
+    height: 2px;
+    background: linear-gradient(90deg, #DC2626, #EAB308, #2563EB, #00F5FF, #FF006E, #DC2626);
+    background-size: 400% 100%;
+    animation: aurora 4s linear infinite;
+    border: none; margin: 0;
+  }
+
+  /* ===== COLORED SECTION BACKGROUNDS ===== */
+  #screen-about    { background: linear-gradient(160deg, #060D22, #08101F); }
+  #screen-bonding  { background: linear-gradient(160deg, #06070F, #0D0A20); }
+  #screen-games    { background: linear-gradient(160deg, #060D22, #0F1208); }
+  #screen-lineup   { background: linear-gradient(160deg, #050B1F, #120510); }
+
+  /* ===== ACTIVITY TAG COLORS ===== */
+  .activity-tag:nth-child(1) { background: rgba(37,99,235,0.18); border-color: rgba(37,99,235,0.4); color: #93C5FD; }
+  .activity-tag:nth-child(2) { background: rgba(234,179,8,0.18); border-color: rgba(234,179,8,0.4); color: #FDE047; }
+  .activity-tag:nth-child(3) { background: rgba(220,38,38,0.18); border-color: rgba(220,38,38,0.4); color: #F87171; }
+  .activity-tag:nth-child(4) { background: rgba(5,150,105,0.18); border-color: rgba(5,150,105,0.4); color: #34D399; }
+  .activity-tag:nth-child(5) { background: rgba(0,245,255,0.12); border-color: rgba(0,245,255,0.3); color: #00F5FF; }
+
+  /* ===== CHIP COLORS ===== */
+  .event-chip:nth-child(1) { border-color: rgba(37,99,235,0.35); }
+  .event-chip:nth-child(2) { border-color: rgba(234,179,8,0.35); }
+  .event-chip:nth-child(3) { border-color: rgba(220,38,38,0.35); }
+
+  /* ===== VIBE CARD BORDER COLORS ===== */
+  .vibe-card:nth-child(1):hover { border-color: rgba(220,38,38,0.4); background: rgba(220,38,38,0.06); }
+  .vibe-card:nth-child(2):hover { border-color: rgba(5,150,105,0.4); background: rgba(5,150,105,0.06); }
+  .vibe-card:nth-child(3):hover { border-color: rgba(234,179,8,0.4); background: rgba(234,179,8,0.06); }
+  .vibe-card:nth-child(4):hover { border-color: rgba(0,245,255,0.4); background: rgba(0,245,255,0.06); }
+
+  /* ===== TIMELINE DOT COLORS ===== */
+  .tl-item:nth-child(1)::before { background: #DC2626; box-shadow: 0 0 12px rgba(220,38,38,0.8); }
+  .tl-item:nth-child(2)::before { background: #EAB308; box-shadow: 0 0 12px rgba(234,179,8,0.8); }
+  .tl-item:nth-child(3)::before { background: #059669; box-shadow: 0 0 12px rgba(5,150,105,0.8); }
+  .tl-item:nth-child(4)::before { background: #2563EB; box-shadow: 0 0 12px rgba(37,99,235,0.8); }
+  .tl-item:nth-child(5)::before { background: #7C3AED; box-shadow: 0 0 12px rgba(124,58,237,0.8); }
+  .tl-item:nth-child(6)::before { background: #DB2777; box-shadow: 0 0 12px rgba(219,39,119,0.8); }
+  .tl-item:nth-child(7)::before { background: #FFD700; box-shadow: 0 0 12px rgba(255,215,0,0.8); }
+
+  /* Phone input flag */
+  .phone-prefix {
+    position: absolute; left: 14px; top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255,255,255,0.5); font-size: 14px; font-weight: 700;
+    pointer-events: none;
+  }
+  .has-prefix { padding-left: 56px !important; }
+
+  /* Input wrapper for icons */
+  .input-wrap { position: relative; }
+  .input-icon {
+    position: absolute; right: 14px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px; pointer-events: none;
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .input-icon.visible { opacity: 1; }
+
+  /* Textarea */
+  .field-textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1.5px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 14px 16px;
+    color: white; font-size: 15px; font-weight: 600;
+    font-family: 'Baloo 2', sans-serif;
+    outline: none; resize: vertical; min-height: 100px;
+    transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+    -webkit-appearance: none; appearance: none;
+    line-height: 1.6;
+  }
+  .field-textarea::placeholder { color: rgba(255,255,255,0.25); font-weight: 500; }
+  .field-textarea:focus {
+    border-color: #2563EB !important;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.22) !important;
+    background: rgba(37,99,235,0.07) !important;
+  }
+  .field-textarea.has-value { border-color: rgba(37,99,235,0.4); }
+
+  /* EmailJS setup notice banner */
+  .emailjs-notice {
+    background: rgba(234,179,8,0.1);
+    border: 1px solid rgba(234,179,8,0.35);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 20px;
+    font-size: 12px;
+    color: #FDE047;
+    line-height: 1.6;
+    font-weight: 600;
+  }
+  .emailjs-notice a { color: #FDE047; text-decoration: underline; }
+  .emailjs-notice.configured { background: rgba(5,150,105,0.1); border-color: rgba(5,150,105,0.35); color: #34D399; }
+
+  /* ===== PAYMENT POPUP ===== */
+  @keyframes popup-in {
+    0%   { opacity: 0; transform: scale(0.88) translateY(30px); }
+    60%  { transform: scale(1.02) translateY(-4px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  @keyframes pulse-gold {
+    0%,100% { box-shadow: 0 0 0 0 rgba(234,179,8,0.4); }
+    50%     { box-shadow: 0 0 0 12px rgba(234,179,8,0); }
+  }
+  @keyframes copy-flash {
+    0%   { background: #059669; }
+    100% { background: linear-gradient(135deg,#EAB308,#D97706); }
+  }
+  @keyframes lock-spin {
+    0%   { transform: rotate(0deg) scale(1); }
+    25%  { transform: rotate(-8deg) scale(1.1); }
+    75%  { transform: rotate(8deg) scale(1.1); }
+    100% { transform: rotate(0deg) scale(1); }
+  }
+
+  #payment-overlay {
+    position: fixed; inset: 0; z-index: 9999;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 12px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.35s ease;
+    overflow-y: auto;
+  }
+  #payment-overlay.active {
+    opacity: 1; pointer-events: all;
+  }
+  .payment-card {
+    background: linear-gradient(145deg, #060E28, #0A1535);
+    border: 1px solid rgba(234,179,8,0.35);
+    border-radius: 20px;
+    padding: clamp(16px,4vw,28px);
+    max-width: 420px; width: 100%;
+    max-height: 92vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow:
+      0 0 0 1px rgba(234,179,8,0.15),
+      0 20px 60px rgba(0,0,0,0.7),
+      0 0 40px rgba(234,179,8,0.06) inset;
+    animation: popup-in 0.45s cubic-bezier(0.34,1.56,0.64,1) both;
+    overflow: hidden;
+  }
+  .payment-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, #DC2626, #EAB308, #2563EB, #EAB308, #DC2626);
+    background-size: 200% 100%;
+    animation: border-spin 3s linear infinite;
+  }
+  .payment-card-bg-orb {
+    position: absolute; width: 280px; height: 280px;
+    border-radius: 50%; filter: blur(80px);
+    background: rgba(234,179,8,0.08);
+    top: -60px; right: -60px; pointer-events: none;
+  }
+  .payment-close-btn {
+    position: absolute; top: 18px; right: 18px;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.5);
+    font-size: 16px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s; font-family: sans-serif; font-weight: 700;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .payment-close-btn:hover { background: rgba(255,255,255,0.14); color: white; }
+
+  .payment-icon-ring {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: rgba(234,179,8,0.12);
+    border: 2px solid rgba(234,179,8,0.4);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; margin: 0 auto 12px;
+    animation: pulse-gold 2.5s ease-in-out infinite;
+  }
+  .payment-badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px; letter-spacing: 0.18em;
+    color: #EAB308; text-align: center;
+    margin-bottom: 6px; text-transform: uppercase;
+  }
+  .payment-title {
+    font-size: clamp(18px, 4vw, 22px); font-weight: 900;
+    text-align: center; line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .payment-title .amt { color: #EAB308; }
+  .payment-subtitle {
+    font-size: 12px; color: rgba(255,255,255,0.5);
+    text-align: center; line-height: 1.5; margin-bottom: 16px;
+  }
+
+  .payment-account-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(234,179,8,0.25);
+    border-radius: 14px; padding: 14px 16px;
+    margin-bottom: 14px; position: relative; overflow: hidden;
+  }
+  .payment-account-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(234,179,8,0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .payment-account-header {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px; letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.35); margin-bottom: 16px;
+    text-transform: uppercase; display: flex; align-items: center; gap: 8px;
+  }
+  .payment-account-header::after {
+    content: ''; flex: 1; height: 1px;
+    background: rgba(255,255,255,0.06);
+  }
+  .payment-row {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 12px; gap: 12px;
+  }
+  .payment-row:last-child { margin-bottom: 0; }
+  .payment-label {
+    font-size: 11px; font-weight: 700;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.08em; text-transform: uppercase;
+    min-width: 100px;
+  }
+  .payment-value {
+    font-size: 14px; font-weight: 800;
+    color: white; text-align: right; flex: 1;
+  }
+  .payment-value.acct-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 18px; color: #FDE047;
+    letter-spacing: 0.12em;
+  }
+  .payment-value.bank {
+    color: #93C5FD;
+  }
+
+  .copy-acct-btn {
+    width: 100%; padding: 12px;
+    background: rgba(234,179,8,0.12);
+    border: 1px solid rgba(234,179,8,0.3);
+    border-radius: 12px; color: #FDE047;
+    font-size: 13px; font-weight: 800;
+    font-family: 'Baloo 2', sans-serif;
+    cursor: pointer; letter-spacing: 0.06em;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    transition: all 0.25s; margin-top: 14px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .copy-acct-btn:hover { background: rgba(234,179,8,0.22); }
+  .copy-acct-btn.copied { background: rgba(5,150,105,0.2); border-color: rgba(5,150,105,0.4); color: #34D399; }
+
+  .payment-warning {
+    background: rgba(220,38,38,0.08);
+    border: 1px solid rgba(220,38,38,0.2);
+    border-radius: 10px; padding: 10px 14px;
+    font-size: 11px; color: rgba(255,255,255,0.55);
+    line-height: 1.5; margin-bottom: 14px;
+    display: flex; gap: 8px; align-items: flex-start;
+  }
+  .payment-warning-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+
+  .payment-proceed-btn {
+    width: 100%; padding: 14px;
+    background: linear-gradient(135deg, #EAB308, #D97706);
+    border: none; border-radius: 14px;
+    color: #050B1F; font-size: 15px; font-weight: 900;
+    cursor: pointer; font-family: 'Baloo 2', sans-serif;
+    letter-spacing: 0.04em;
+    box-shadow: 0 0 20px rgba(234,179,8,0.25), inset 0 1px 0 rgba(255,255,255,0.25);
+    transition: all 0.25s; position: relative; overflow: hidden;
+    -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+  }
+  .payment-proceed-btn::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%);
+    transform: translateX(-100%); transition: transform 0.5s;
+  }
+  .payment-proceed-btn:hover::after { transform: translateX(100%); }
+  .payment-proceed-btn:hover { transform: translateY(-2px); filter: brightness(1.08); }
+  .payment-proceed-btn:active { transform: translateY(0); }
+
+  .payment-steps {
+    display: flex; gap: 6px; margin-bottom: 14px;
+    flex-wrap: wrap; justify-content: center;
+  }
+  .payment-step {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px; padding: 6px 10px;
+    font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.55);
+    display: flex; align-items: center; gap: 5px; flex: 1; min-width: 120px;
+    text-align: center; justify-content: center;
+  }
+  .payment-step-num {
+    width: 18px; height: 18px; border-radius: 50%;
+    background: rgba(234,179,8,0.2); color: #EAB308;
+    font-size: 9px; font-weight: 900;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+
+  /* ===== PASS ENHANCEMENTS ===== */
+  .pass-color-stripe {
+    height: 6px; width: 100%;
+    border-radius: 3px; margin-bottom: 16px;
+    transition: all 0.4s ease;
+  }
+  .pass-squad-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px; border-radius: 100px;
+    font-size: 13px; font-weight: 800;
+    margin-bottom: 16px;
+  }
+
+  /* ===== CREATED BY FOOTER ===== */
+  .cover-footer {
+    background: #02050F;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 40px 20px 32px;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .cover-footer::before {
+    content: '';
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 200px; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(234,179,8,0.5), transparent);
+  }
+  .cover-footer-divider {
+    width: 40px; height: 2px;
+    background: rgba(255,255,255,0.1);
+    margin: 0 auto 20px;
+    border-radius: 2px;
+  }
+  .cover-footer-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px; letter-spacing: 0.3em;
+    color: rgba(255,255,255,0.2);
+    text-transform: uppercase; margin-bottom: 8px;
+  }
+  .cover-footer-brand {
+    font-size: 22px; font-weight: 900;
+    letter-spacing: 0.08em;
+    background: linear-gradient(135deg, #fff 30%, rgba(255,255,255,0.45));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; margin-bottom: 6px;
+  }
+  .cover-footer-brand span {
+    background: linear-gradient(135deg, #EAB308, #D97706);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .cover-footer-sub {
+    font-size: 11px; color: rgba(255,255,255,0.18);
+    letter-spacing: 0.05em;
+  }
+  .cover-footer-dots {
+    display: flex; gap: 5px; justify-content: center; margin-top: 16px;
+  }
+  .cover-footer-dot {
+    width: 4px; height: 4px; border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+  }
+  .cover-footer-dot:nth-child(2) { background: rgba(234,179,8,0.3); }
+</style>
+</head>
+<body>
+
+<!-- ===================== HERO ===================== -->
+<div id="screen-hero" class="screen">
+  <div class="aurora-bg"></div>
+  <div class="orb" style="width:620px;height:620px;background:#2563EB;top:-220px;left:-220px;"></div>
+  <div class="orb" style="width:520px;height:520px;background:#EAB308;bottom:-160px;right:-120px;animation-delay:3s;"></div>
+  <div class="orb" style="width:320px;height:320px;background:#DC2626;top:48%;left:48%;animation-delay:5s;"></div>
+  <div class="orb" style="width:200px;height:200px;background:#00F5FF;bottom:20%;left:5%;opacity:0.08;animation-delay:7s;"></div>
+  <div class="scanline-wrap"><div class="scanline-bar"></div></div>
+  <!-- Light streaks -->
+  <div class="streak" style="top:20%;animation-duration:5s;animation-delay:0s;background:linear-gradient(90deg,transparent,rgba(220,38,38,0.7),transparent);"></div>
+  <div class="streak" style="top:55%;animation-duration:7s;animation-delay:2s;width:200px;"></div>
+  <div class="streak" style="top:80%;animation-duration:4s;animation-delay:4s;background:linear-gradient(90deg,transparent,rgba(234,179,8,0.6),transparent);"></div>
+  <div id="hero-particles"></div>
+
+  <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;">
+    <div class="hero-badge mono">◉ THE 250 REPS PRESENTS</div>
+    <h1 class="hero-title hero-title-neon">250 <span class="yellow">Reps</span></h1>
+    <h2 class="hero-sub">Exper<span class="blue">ience</span></h2>
+    <p class="hero-tagline">A Family Hangout Like No Other</p>
+
+    <div class="event-chips">
+      <div class="event-chip">📅 Saturday, May 23rd</div>
+      <div class="event-chip">⏰ 1PM</div>
+      <div class="event-chip">📍 Glitch Arcade</div>
+    </div>
+
+    <div class="activity-tags">
+      <span class="activity-tag">🎮 Games</span>
+      <span class="activity-tag">🍔 Food</span>
+      <span class="activity-tag">🔴 Red Squad</span>
+      <span class="activity-tag">🏆 Prizes</span>
+      <span class="activity-tag">🎉 And More</span>
+    </div>
+
+    <div class="cta-wrap">
+      <div class="pulse-ring"></div>
+      <button class="cta-btn" onclick="scrollToAbout()" aria-label="Learn about 250 Reps Experience">
+        SEE WHAT'S WAITING ↓
+      </button>
+    </div>
+
+    <p class="mono" style="margin-top:20px;color:rgba(255,255,255,0.4);font-size:13px;">Your pass will land straight in your email</p>
+  </div>
+</div>
+
+<!-- TICKER TAPE -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span class="ticker-item">250 REPS EXPERIENCE<span class="t-dot">◆</span></span>
+    <span class="ticker-item">SATURDAY MAY 23RD<span class="t-dot">◆</span></span>
+    <span class="ticker-item">GLITCH ARCADE<span class="t-dot">◆</span></span>
+    <span class="ticker-item">GAMES<span class="t-dot">◆</span></span>
+    <span class="ticker-item">FOOD &amp; DRINKS<span class="t-dot">◆</span></span>
+    <span class="ticker-item">FREE ENTRY WITH PASS<span class="t-dot">◆</span></span>
+    <span class="ticker-item">6 SQUAD COLORS<span class="t-dot">◆</span></span>
+    <span class="ticker-item">REAL PRIZES<span class="t-dot">◆</span></span>
+    <span class="ticker-item">1PM KICKOFF<span class="t-dot">◆</span></span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item">250 REPS EXPERIENCE<span class="t-dot">◆</span></span>
+    <span class="ticker-item">SATURDAY MAY 23RD<span class="t-dot">◆</span></span>
+    <span class="ticker-item">GLITCH ARCADE<span class="t-dot">◆</span></span>
+    <span class="ticker-item">GAMES<span class="t-dot">◆</span></span>
+    <span class="ticker-item">FOOD &amp; DRINKS<span class="t-dot">◆</span></span>
+    <span class="ticker-item">FREE ENTRY WITH PASS<span class="t-dot">◆</span></span>
+    <span class="ticker-item">6 SQUAD COLORS<span class="t-dot">◆</span></span>
+    <span class="ticker-item">REAL PRIZES<span class="t-dot">◆</span></span>
+    <span class="ticker-item">1PM KICKOFF<span class="t-dot">◆</span></span>
+  </div>
+</div>
+
+<!-- FLOATING NAV -->
+<nav id="float-nav" style="
+  position:fixed; top:16px; left:50%; transform:translateX(-50%);
+  z-index:200; display:none; align-items:center; gap:6px;
+  background:rgba(5,11,31,0.88); backdrop-filter:blur(24px);
+  border:1px solid rgba(37,99,235,0.25); border-radius:100px;
+  padding:10px 20px; font-size:12px; font-weight:700;
+  font-family:'Space Mono',monospace; letter-spacing:0.08em;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+  transition: opacity 0.3s;
+">
+  <a href="#screen-about" onclick="scrollSec('screen-about')" style="color:rgba(255,255,255,0.55);text-decoration:none;padding:4px 8px;border-radius:8px;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">About</a>
+  <a href="#screen-bonding" onclick="scrollSec('screen-bonding')" style="color:rgba(255,255,255,0.55);text-decoration:none;padding:4px 8px;border-radius:8px;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Bonding</a>
+  <a href="#screen-games" onclick="scrollSec('screen-games')" style="color:rgba(255,255,255,0.55);text-decoration:none;padding:4px 8px;border-radius:8px;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Games</a>
+  <a href="#screen-lineup" onclick="scrollSec('screen-lineup')" style="color:rgba(255,255,255,0.55);text-decoration:none;padding:4px 8px;border-radius:8px;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Schedule</a>
+  <button onclick="goToForm()" style="background:linear-gradient(135deg,#2563EB,#1D4ED8);border:none;color:white;padding:6px 16px;border-radius:20px;font-size:12px;font-weight:800;cursor:pointer;font-family:'Space Mono',monospace;letter-spacing:0.06em;">Register</button>
+</nav>
+
+<!-- ===================== ABOUT THE EVENT ===================== -->
+<hr class="neon-line">
+<div id="screen-about" class="exp-section">
+  <div class="orb" style="width:500px;height:500px;background:#DC2626;top:-200px;right:-200px;opacity:0.08;"></div>
+  <div class="exp-section-inner">
+    <div class="exp-label">◉ So What Is This?</div>
+    <h2 class="exp-h2">Where <span class="acc">250 Reps</span><br>Comes Together</h2>
+    <p class="exp-desc">
+      This is not a lecture. It's not a seminar. It's a full day out — just 250 Reps hanging, playing, eating, laughing, and building real friendships. The kind of day you'll still be talking about in final year.
+    </p>
+
+    <div class="about-pills">
+      <div class="about-pill">📅 Saturday, May 23rd</div>
+      <div class="about-pill">⏰ Starts 1:00 PM</div>
+      <div class="about-pill">📍 Glitch Arcade</div>
+      <div class="about-pill">🎟 Free with Your Pass</div>
+    </div>
+
+    <div class="vibes-grid">
+      <div class="vibe-card">
+        <span class="vibe-icon">🔥</span>
+        <div class="vibe-title">Full Energy</div>
+        <div class="vibe-text">Come as yourself. Leave with memories you'll be telling people about for years — no exaggeration.</div>
+      </div>
+      <div class="vibe-card">
+        <span class="vibe-icon">🤝</span>
+        <div class="vibe-title">Real Friendships</div>
+        <div class="vibe-text">Squad up with people from other faculties and levels. The ones you meet here might become your people.</div>
+      </div>
+      <div class="vibe-card">
+        <span class="vibe-icon">🎯</span>
+        <div class="vibe-title">Actually Fun</div>
+        <div class="vibe-text">Everything planned for the day is built to make you enjoy yourself — no boring bits, no filler.</div>
+      </div>
+      <div class="vibe-card">
+        <span class="vibe-icon">🌟</span>
+        <div class="vibe-title">Your Day</div>
+        <div class="vibe-text">This whole thing was put together with you in mind. Show up, enjoy it, and feel at home.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== BONDING SECTION ===================== -->
+<div id="screen-bonding" class="exp-section">
+  <div class="bonding-divider"></div>
+  <div class="exp-section-inner">
+    <div class="exp-label">◉ How We Connect</div>
+    <h2 class="exp-h2">Bonding That <span class="acc">Actually Works</span></h2>
+    <p class="exp-desc">
+      Every part of the day is set up so you naturally meet people and click with them. No awkward forced stuff — just reps doing fun things together until friendships form on their own.
+    </p>
+
+    <div class="bonding-list">
+      <div class="bonding-item">
+        <div class="bonding-num">01</div>
+        <div>
+          <div class="bonding-title">Squad Mix & Mingle</div>
+          <div class="bonding-desc">You'll be put in a color squad with reps from different faculties and levels — mixed on purpose so you meet people outside your usual circle. That's where the magic starts.</div>
+        </div>
+      </div>
+      <div class="bonding-item">
+        <div class="bonding-num">02</div>
+        <div>
+          <div class="bonding-title">Rep Circle Sessions</div>
+          <div class="bonding-desc">Quick open-floor moments where reps share stories, wins, and what they're working toward. Low pressure, but you'll walk away feeling like you've known these people a long time.</div>
+        </div>
+      </div>
+      <div class="bonding-item">
+        <div class="bonding-num">03</div>
+        <div>
+          <div class="bonding-title">Squad Challenges</div>
+          <div class="bonding-desc">Team games that make you laugh, compete, and cheer each other on. Nothing brings people together faster than winning — or losing — as a group.</div>
+        </div>
+      </div>
+      <div class="bonding-item">
+        <div class="bonding-num">04</div>
+        <div>
+          <div class="bonding-title">The Appreciation Wall</div>
+          <div class="bonding-desc">Drop a note for someone you rate in the 250 Reps circle. Say what you've never said out loud. Watch how fast good energy spreads through the room.</div>
+        </div>
+      </div>
+      <div class="bonding-item">
+        <div class="bonding-num">05</div>
+        <div>
+          <div class="bonding-title">Closing Circle</div>
+          <div class="bonding-desc">We wrap up together — every rep, one big circle. Winners get crowned. Shoutouts go up. You leave knowing exactly who your people are. Don't be surprised if you tear up a little.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== GAMES & FOOD ===================== -->
+<div id="screen-games" class="exp-section">
+  <div class="orb" style="width:450px;height:450px;background:#EAB308;bottom:-200px;left:-180px;opacity:0.09;animation-delay:3s;"></div>
+  <div class="exp-section-inner">
+    <div class="exp-label">◉ The Good Stuff</div>
+    <h2 class="exp-h2">Games, <span class="acc">Food</span> &<br>Good Times</h2>
+    <p class="exp-desc">
+      Glitch Arcade is our playground for the day. From head-to-head game battles to proper food and drinks — this is what "experience" actually looks like.
+    </p>
+
+    <div class="games-grid">
+      <!-- GAMES COLUMN -->
+      <div>
+        <div class="games-col-title">🎮 Games &amp; Activities</div>
+        <div class="game-item">
+          <div class="gi-icon">🕹️</div>
+          <div>
+            <div class="gi-name">Arcade Showdowns</div>
+            <div class="gi-sub">Head-to-head arcade battles across squads</div>
+          </div>
+        </div>
+        <div class="game-item">
+          <div class="gi-icon">🎳</div>
+          <div>
+            <div class="gi-name">Group Challenges</div>
+            <div class="gi-sub">Team games with real prizes on the line</div>
+          </div>
+        </div>
+        <div class="game-item">
+          <div class="gi-icon">🎤</div>
+          <div>
+            <div class="gi-name">Karaoke Throwdown</div>
+            <div class="gi-sub">Brave the mic or cheer your squad on</div>
+          </div>
+        </div>
+        <div class="game-item">
+          <div class="gi-icon">🎲</div>
+          <div>
+            <div class="gi-name">Table Game Zone</div>
+            <div class="gi-sub">Chill vibes, cards, and board game battles</div>
+          </div>
+        </div>
+        <div class="game-item">
+          <div class="gi-icon">📸</div>
+          <div>
+            <div class="gi-name">Content Corner</div>
+            <div class="gi-sub">Photo booth &amp; squad memory station</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOD COLUMN -->
+      <div>
+        <div class="games-col-title">🍔 Food &amp; Refreshments</div>
+        <div class="food-item">
+          <div class="gi-icon">🍕</div>
+          <div>
+            <div class="gi-name">Shareable Bites</div>
+            <div class="gi-sub">Pizza, sliders &amp; finger foods all day</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <div class="gi-icon">🧃</div>
+          <div>
+            <div class="gi-name">Refreshment Bar</div>
+            <div class="gi-sub">Cold drinks &amp; mocktails on tap</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <div class="gi-icon">🍦</div>
+          <div>
+            <div class="gi-name">Sweet Station</div>
+            <div class="gi-sub">Desserts, ice cream &amp; treats corner</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <div class="gi-icon">☕</div>
+          <div>
+            <div class="gi-name">Chill Corner Drinks</div>
+            <div class="gi-sub">Hot drinks &amp; chill-out zone refreshments</div>
+          </div>
+        </div>
+        <div class="food-item">
+          <div class="gi-icon">🎁</div>
+          <div>
+            <div class="gi-name">Rep Giveaways</div>
+            <div class="gi-sub">Surprises &amp; gifts throughout the day</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="prize-banner">
+      <div class="prize-icon">🏆</div>
+      <div>
+        <div class="prize-title">Winner Takes All</div>
+        <div class="prize-desc">Top squads and individual game winners take home real prizes. Come ready to compete — but stay for the love.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SCHEDULE / LINEUP ===================== -->
+<div id="screen-lineup" class="exp-section">
+  <div class="bonding-divider"></div>
+  <div class="exp-section-inner">
+    <div class="exp-label">◉ Day Lineup</div>
+    <h2 class="exp-h2">What's <span class="acc">Going Down</span></h2>
+    <p class="exp-desc">Here's exactly how May 23rd is going to run. Every slot is sorted — no dead time, no standing around wondering what's next.</p>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">1:00 PM — DOORS OPEN</div>
+        <div class="tl-title">Come In & Get Checked In</div>
+        <div class="tl-desc">Walk in, pick up your pass, and get sorted into your squad. Say hi to the people around you. Drinks and food are already out.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">1:30 PM — KICKOFF</div>
+        <div class="tl-title">Opening</div>
+        <div class="tl-desc">Short but sharp. We set the mood for the day and make sure every rep knows what's about to happen.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">2:00 PM — WARM UP</div>
+        <div class="tl-title">Meet Your Squad</div>
+        <div class="tl-desc">Get to know the people in your color squad. By the time this is done, you'll already feel comfortable with them.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">2:30 PM — GAME TIME</div>
+        <div class="tl-title">Arcade Battle Rounds</div>
+        <div class="tl-desc">Squad vs. squad at the arcade stations. Points are counted, pride is on the line, prizes are waiting. Food and drinks keep coming.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">4:00 PM — BREAK</div>
+        <div class="tl-title">Rep Circle & Appreciation Wall</div>
+        <div class="tl-desc">Open mic, shoutouts, and the wall goes live. This is the part people remember most. Bring tissue — just in case.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">4:45 PM — ROUND 2</div>
+        <div class="tl-title">Final Games + Karaoke</div>
+        <div class="tl-desc">Things get louder. Elimination rounds, karaoke showdowns, crowd going wild. Last chance to score points for your squad.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">5:45 PM — WRAP UP</div>
+        <div class="tl-title">Closing Circle & Prizes</div>
+        <div class="tl-desc">Every rep comes together one last time. Winners get crowned. Love is shared. Nobody leaves the same way they arrived.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== REGISTER CTA BANNER ===================== -->
+<hr class="neon-line">
+<div class="reg-cta-section">
+  <div class="reg-cta-inner">
+    <div class="reg-cta-label mono">◉ SPOTS ARE GOING FAST — LOCK YOURS IN</div>
+    <h2 class="reg-cta-title">You Coming <span style="color:#EAB308">or Not?</span></h2>
+    <p class="reg-cta-sub">Takes less than 2 minutes to register. Get your pass. Show up and have the best time.</p>
+    <div class="cta-wrap" style="display:inline-block;">
+      <div class="pulse-ring"></div>
+      <button class="cta-btn" onclick="goToForm()" aria-label="Register for 250 Reps Experience">
+        GET MY PASS →
+      </button>
+    </div>
+    <p class="mono" style="margin-top:18px;color:rgba(255,255,255,0.35);font-size:12px;">Pass goes straight to your email · May 23rd · Glitch Arcade · 1PM</p>
+  </div>
+</div>
+
+<div id="screen-form" class="screen hidden">
+  <!-- Orbs -->
+  <div class="orb" style="width:400px;height:400px;background:#2563EB;top:-100px;right:-100px;"></div>
+  <div class="orb" style="width:350px;height:350px;background:#EAB308;bottom:-100px;left:-100px;animation-delay:4s;"></div>
+
+  <!-- Header -->
+  <div class="form-header">
+    <div class="form-logo">250 <span>REPS</span></div>
+    <div class="form-meta mono">MAY 23 · GLITCH ARCADE</div>
+  </div>
+
+  <!-- Progress -->
+  <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="3" aria-label="Step 1 of 2">
+    <div class="step-dot active" id="step1">1</div>
+    <div class="step-line" id="line1"></div>
+    <div class="step-dot inactive" id="step2">2</div>
+    <div class="step-line" id="line2"></div>
+    <div class="step-dot inactive" id="step3">🎟</div>
+  </div>
+
+  <div class="form-inner">
+    <div style="text-align:center;margin-bottom:36px;">
+      <div class="form-hero-tag mono">◉ LOCK IN YOUR SPOT</div>
+      <h1 class="form-title">Get Your <span>Pass</span></h1>
+      <p class="form-subtitle">Fill in your details, pick your squad color, and you're in</p>
+    </div>
+
+    <div class="form-card">
+
+      <!-- PERSONAL INFO -->
+      <div class="section-title">👤 Personal Info</div>
+
+      <div class="field-group" style="animation-delay:0.05s">
+        <label class="field-label normal" for="inp-name" id="lbl-name">Full Name</label>
+        <div class="input-wrap">
+          <input id="inp-name" class="field-input" type="text" placeholder="Enter your full name"
+                 autocomplete="name" autocorrect="off" spellcheck="false"
+                 oninput="liveValidate('name',this)"
+                 aria-labelledby="lbl-name" aria-required="true" />
+          <span class="input-icon" id="icon-name"></span>
+        </div>
+        <div class="field-error hidden" id="err-name">⚠ Your name is required</div>
+      </div>
+
+      <div class="field-group" style="animation-delay:0.1s">
+        <label class="field-label normal" for="inp-email" id="lbl-email">Email Address</label>
+        <div class="input-wrap">
+          <input id="inp-email" class="field-input" type="email" placeholder="your@email.com"
+                 autocomplete="email" autocorrect="off" autocapitalize="none" spellcheck="false"
+                 inputmode="email"
+                 oninput="liveValidate('email',this)"
+                 aria-labelledby="lbl-email" aria-required="true" />
+          <span class="input-icon" id="icon-email"></span>
+        </div>
+        <div class="field-error hidden" id="err-email">⚠ Valid email required</div>
+      </div>
+
+      <div class="field-group" style="animation-delay:0.15s">
+        <label class="field-label normal" for="inp-phone" id="lbl-phone">Phone Number <span style="color:rgba(255,255,255,0.3)">(optional)</span></label>
+        <div class="input-wrap">
+          <span class="phone-prefix">🇳🇬</span>
+          <input id="inp-phone" class="field-input has-prefix" type="tel" placeholder="+234 800 000 0000"
+                 autocomplete="tel" inputmode="tel"
+                 aria-labelledby="lbl-phone" />
+        </div>
+      </div>
+
+      <!-- ACADEMIC INFO -->
+      <div class="section-title section-sep">🎓 Academic Info</div>
+
+      <div class="field-group" style="animation-delay:0.2s">
+        <label class="field-label normal" for="sel-faculty" id="lbl-faculty">Faculty</label>
+        <div class="select-wrapper">
+          <select id="sel-faculty" class="field-select" onchange="onFacultyChange(this)"
+                  aria-labelledby="lbl-faculty" aria-required="true">
+            <option value="">— Select your faculty —</option>
+          </select>
+          <span class="select-arrow">▾</span>
+        </div>
+        <div class="other-input-wrap hidden" id="faculty-other-wrap" style="margin-top:10px;">
+          <input id="inp-faculty-other" class="field-input" type="text"
+                 placeholder="Type your faculty name…"
+                 autocomplete="organization" spellcheck="false"
+                 oninput="onFacultyOtherInput(this)"
+                 aria-label="Faculty name (custom)" />
+        </div>
+        <div class="field-error hidden" id="err-faculty">⚠ Select or enter your faculty</div>
+      </div>
+
+      <div class="field-group" style="animation-delay:0.25s">
+        <label class="field-label normal" for="sel-dept" id="lbl-dept">Department</label>
+        <div class="select-wrapper" id="dept-select-wrap">
+          <select id="sel-dept" class="field-select" disabled onchange="onDeptChange(this)"
+                  aria-labelledby="lbl-dept" aria-required="true">
+            <option value="">— Select your department —</option>
+          </select>
+          <span class="select-arrow">▾</span>
+        </div>
+        <div class="other-input-wrap hidden" id="dept-other-wrap" style="margin-top:10px;">
+          <input id="inp-dept-other" class="field-input" type="text"
+                 placeholder="Type your department name…"
+                 autocomplete="off" spellcheck="false"
+                 oninput="onDeptOtherInput(this)"
+                 aria-label="Department name (custom)" />
+        </div>
+        <div class="field-error hidden" id="err-dept">⚠ Select or enter your department</div>
+      </div>
+
+      <div class="field-group" style="animation-delay:0.3s">
+        <label class="field-label normal" for="sel-level" id="lbl-level">Level</label>
+        <div class="select-wrapper">
+          <select id="sel-level" class="field-select" onchange="liveValidate('level',this)"
+                  aria-labelledby="lbl-level" aria-required="true">
+            <option value="">— Select your level —</option>
+            <option>100 Level</option><option>200 Level</option>
+            <option>300 Level</option><option>400 Level</option>
+            <option>500 Level</option><option>600 Level</option>
+            <option>Postgraduate</option>
+          </select>
+          <span class="select-arrow">▾</span>
+        </div>
+        <div class="field-error hidden" id="err-level">⚠ Select your level</div>
+      </div>
+
+      <!-- SQUAD COLOR -->
+      <div class="section-title section-sep">🎨 Choose Your Squad Color</div>
+      <div class="capacity-bar-wrap" id="capacity-bar-wrap">
+        <div class="capacity-bar-label">
+          <span id="capacity-text">Loading spots...</span>
+          <span id="capacity-count">—</span>
+        </div>
+        <div class="capacity-bar-track">
+          <div class="capacity-bar-fill" id="capacity-fill" style="width:0%"></div>
+        </div>
+      </div>
+      <div class="field-error hidden" id="err-squad" style="margin-bottom:12px;">⚠ Pick your squad color</div>
+      <div class="squad-grid" id="squad-grid" role="radiogroup" aria-label="Squad color selection"></div>
+
+      <!-- SUBMIT -->
+      <button class="submit-btn" id="submit-btn" onclick="handleSubmit(event)" aria-label="Claim your event pass">
+        🎟️ GET MY PASS →
+      </button>
+      <p class="mono" style="text-align:center;color:rgba(255,255,255,0.3);font-size:12px;margin-top:12px;">
+        Your pass shows up right away — no waiting
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== PASS ===================== -->
+<div id="screen-pass" class="screen hidden">
+  <div id="pass-orb1" class="orb" style="width:520px;height:520px;top:-100px;right:-100px;"></div>
+  <div class="orb" style="width:420px;height:420px;background:#EAB308;bottom:-100px;left:-100px;opacity:0.12;animation-delay:4s;"></div>
+  <div id="confetti-container"></div>
+
+  <div class="pass-success-badge mono" style="animation-delay:0s;">✓ YOU'RE REGISTERED — SEE YOU THERE!</div>
+
+  <!-- THE PASS CARD -->
+  <div class="pass-card-outer" id="pass-card" style="perspective:1200px;">
+    <div class="pass-border-ring" id="pass-border"></div>
+    <div class="pass-inner">
+      <div class="pass-top-band" id="pass-top-band">
+        <div class="pass-top-hatch"></div>
+        <div class="pass-top-content">
+          <div class="pass-top-label mono">THE 250 REPS PRESENTS</div>
+          <div class="pass-top-title">250 Reps Experience</div>
+          <div class="pass-top-sub">Family Hangout • Glitch Arcade</div>
+        </div>
+      </div>
+
+      <!-- Ticket perforations -->
+      <div class="pass-divider" style="margin:12px 0;">
+        <div class="pass-hole left" id="pass-hole-l"></div>
+        <div class="pass-dash"></div>
+        <div class="pass-hole right" id="pass-hole-r"></div>
+      </div>
+
+      <div class="pass-body">
+        <div class="pass-grid">
+          <div>
+            <div class="pass-field-label mono">ATTENDEE</div>
+            <div class="pass-field-value" id="pf-name">—</div>
+          </div>
+          <div>
+            <div class="pass-field-label mono">SQUAD</div>
+            <div class="pass-field-value" id="pf-squad">—</div>
+          </div>
+          <div class="pass-full">
+            <div class="pass-field-label mono">FACULTY</div>
+            <div class="pass-field-value small" id="pf-faculty">—</div>
+          </div>
+          <div class="pass-full">
+            <div class="pass-field-label mono">DEPARTMENT</div>
+            <div class="pass-field-value small" id="pf-dept">—</div>
+          </div>
+          <div>
+            <div class="pass-field-label mono">LEVEL</div>
+            <div class="pass-field-value" id="pf-level">—</div>
+          </div>
+          <div>
+            <div class="pass-field-label mono">DATE</div>
+            <div class="pass-field-value">Saturday, May 23rd</div>
+          </div>
+        </div>
+
+        <!-- Squad bar -->
+        <div class="squad-bar" id="pass-squad-bar">
+          <div class="squad-bar-swatch" id="pass-squad-swatch"></div>
+          <div>
+            <div class="squad-bar-label mono">SQUAD COLOR</div>
+            <div class="squad-bar-name" id="pass-squad-name">—</div>
+          </div>
+        </div>
+
+        <!-- Pass ID + QR -->
+        <div class="pass-bottom-row">
+          <div>
+            <div class="pass-id-label mono">PASS ID</div>
+            <div class="pass-id-value mono" id="pf-passid">—</div>
+            <div class="pass-id-time mono">1:00 PM · Glitch Arcade</div>
+          </div>
+          <div class="qr-grid" id="qr-grid"></div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="pass-footer" id="pass-footer">
+        <div class="pass-footer-text mono">
+          Confirmation sent to: <span class="pass-footer-email" id="pf-email">—</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Action buttons -->
+  <div class="action-btns">
+    <button class="action-btn" id="save-img-btn" onclick="savePassAsImage()" style="">📸 Save Pass</button>
+    <a id="email-btn" href="#" class="action-btn" style="">📧 Send to Email</a>
+    <button class="action-btn action-btn-secondary" onclick="goToHero()">← Back to Home</button>
+  </div>
+  <p class="pass-hint mono">Tap "Save Pass" to download or screenshot it — tap "Send to Email" to get it in your inbox</p>
+</div>
+
+<!-- ===================== PAYMENT POPUP MODAL ===================== -->
+<div id="payment-overlay" role="dialog" aria-modal="true" aria-label="Payment required before registration">
+  <div class="payment-card">
+    <div class="payment-card-bg-orb"></div>
+    <button class="payment-close-btn" onclick="closePaymentPopup()" aria-label="Close payment popup">✕</button>
+
+    <div class="payment-icon-ring">💳</div>
+    <div class="payment-badge mono">◉ Important — Complete This First</div>
+    <h2 class="payment-title">Pay <span class="amt">₦2,000</span> to<br>Secure Your Spot</h2>
+    <p class="payment-subtitle">To confirm your rep registration, you need to make a one-time payment of ₦2,000 before filling the form. Your pass is issued once registration is complete.</p>
+
+    <!-- Steps -->
+    <div class="payment-steps">
+      <div class="payment-step">
+        <div class="payment-step-num">1</div>
+        Transfer ₦2,000 to the account below
+      </div>
+      <div class="payment-step">
+        <div class="payment-step-num">2</div>
+        Tap "I Have Paid" to fill your form
+      </div>
+      <div class="payment-step">
+        <div class="payment-step-num">3</div>
+        Get your pass sent to your email
+      </div>
+    </div>
+
+    <!-- Account Card -->
+    <div class="payment-account-card">
+      <div class="payment-account-header">Transfer Details</div>
+
+      <div class="payment-row">
+        <div class="payment-label">Account Name</div>
+        <div class="payment-value">Ruth Osaikhomwan Emmanuel</div>
+      </div>
+      <div class="payment-row">
+        <div class="payment-label">Account No.</div>
+        <div class="payment-value acct-num" id="acct-num-display">5076601466</div>
+      </div>
+      <div class="payment-row">
+        <div class="payment-label">Bank</div>
+        <div class="payment-value bank">Moniepoint MFB</div>
+      </div>
+      <div class="payment-row">
+        <div class="payment-label">Amount</div>
+        <div class="payment-value" style="color:#EAB308;font-size:18px;">₦2,000.00</div>
+      </div>
+
+      <button class="copy-acct-btn" id="copy-btn" onclick="copyAccountNumber()">
+        <span id="copy-icon">📋</span>
+        <span id="copy-text">Copy Account Number</span>
+      </button>
+    </div>
+
+    <!-- Warning -->
+    <div class="payment-warning">
+      <span class="payment-warning-icon">⚠️</span>
+      <span>Keep your payment receipt. You may be asked to show proof at the event. Only tap "I Have Paid" after your transfer is complete.</span>
+    </div>
+
+    <!-- Proceed Button -->
+    <button class="payment-proceed-btn" onclick="proceedToRegister()">
+      ✅ &nbsp;I Have Paid — Register Now →
+    </button>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast" role="alert" aria-live="polite"></div>
+
+<!-- ===================== CREATED BY COVER FOOTER ===================== -->
+<footer class="cover-footer">
+  <div class="cover-footer-divider"></div>
+  <div class="cover-footer-label">Built &amp; Designed by</div>
+  <div class="cover-footer-brand">
+    Kover<span> ◆</span></div>
+  <div class="cover-footer-sub">Creating experiences that move people</div>
+  <div class="cover-footer-dots">
+    <div class="cover-footer-dot"></div>
+    <div class="cover-footer-dot"></div>
+    <div class="cover-footer-dot"></div>
+  </div>
+</footer>
+
+<script>
+// ===================== DATA =====================
+const FACULTIES = {
+  "Faculty of Agriculture": [
+    "Agricultural Economics & Extension Services",
+    "Animal Science",
+    "Aquaculture & Fisheries Management",
+    "Crop Science",
+    "Food Science & Nutrition",
+    "Forest Resources & Wildlife Management",
+    "Soil Science & Land Management"
+  ],
+  "Faculty of Arts": [
+    "English & Literature",
+    "Foreign Languages (French, Russian, etc.)",
+    "History & International Studies",
+    "Linguistics & African Languages",
+    "Philosophy",
+    "Religious Studies & Human Relations",
+    "Theatre Arts"
+  ],
+  "School of Basic Medical Sciences": [
+    "Anatomy",
+    "Medical Biochemistry",
+    "Medical Laboratory Science",
+    "Nursing Science",
+    "Physiology",
+    "Radiography & Radiation Science"
+  ],
+  "Faculty of Computing": [
+    "Computer Science",
+    "Cyber Security",
+    "Data Science",
+    "Information & Communication Technology (ICT)",
+    "Information Technology",
+    "Software Engineering"
+  ],
+  "Faculty of Dentistry": [
+    "Child Dental Health",
+    "Oral & Maxillofacial Surgery",
+    "Oral Pathology & Oral Medicine",
+    "Periodontics & Community Dentistry",
+    "Preventive Dentistry",
+    "Restorative Dentistry"
+  ],
+  "Faculty of Education": [
+    "Adult & Non-Formal Education",
+    "Business Education",
+    "Early Childhood & Primary Education",
+    "Educational Management",
+    "English & Literature Education",
+    "Guidance & Counselling",
+    "Human Kinetics & Health Education",
+    "Library & Information Science",
+    "Mathematics & Computer Science Education",
+    "Science & Technology Education",
+    "Social Science Education",
+    "Special Education",
+    "Vocational & Technical Education"
+  ],
+  "Faculty of Engineering": [
+    "Agricultural Engineering",
+    "Chemical Engineering",
+    "Civil Engineering",
+    "Computer Engineering",
+    "Electrical / Electronic Engineering",
+    "Industrial Engineering",
+    "Marine Engineering",
+    "Materials & Metallurgical Engineering",
+    "Mechanical Engineering",
+    "Mechatronics Engineering",
+    "Petroleum Engineering",
+    "Production Engineering",
+    "Structural Engineering",
+    "Surveying & Geoinformatics"
+  ],
+  "Faculty of Environmental Sciences": [
+    "Architecture",
+    "Estate Management",
+    "Fine & Applied Arts",
+    "Geomatics",
+    "Quantity Surveying",
+    "Urban & Regional Planning"
+  ],
+  "Faculty of Law": [
+    "Business Law",
+    "Jurisprudence & International Law",
+    "Private Law",
+    "Public Law"
+  ],
+  "Faculty of Life Sciences": [
+    "Animal & Environmental Biology",
+    "Biochemistry",
+    "Environmental Management & Toxicology",
+    "Microbiology",
+    "Optometry",
+    "Plant Biology & Biotechnology"
+  ],
+  "Faculty of Management Sciences": [
+    "Accounting",
+    "Actuarial Science",
+    "Banking & Finance",
+    "Business Administration",
+    "Human Resource Management",
+    "Insurance",
+    "Marketing",
+    "Public Administration",
+    "Taxation",
+    "Tourism & Hospitality Management"
+  ],
+  "Faculty of Media & Communication Studies": [
+    "Communication Studies",
+    "Journalism",
+    "Mass Communication",
+    "Public Relations & Advertising"
+  ],
+  "Faculty of Medicine": [
+    "Medicine & Surgery (MBBS)"
+  ],
+  "Faculty of Nursing Sciences": [
+    "Nursing Science"
+  ],
+  "Faculty of Pharmacy": [
+    "Clinical Pharmacy & Pharmacy Practice",
+    "Pharmaceutical Chemistry",
+    "Pharmaceutical Microbiology",
+    "Pharmacognosy & Ethnopharmacy",
+    "Pharmaceutics & Pharmaceutical Technology",
+    "Pharmacology & Toxicology"
+  ],
+  "Faculty of Physical Sciences": [
+    "Chemistry",
+    "Computer Science",
+    "Geology",
+    "Mathematics",
+    "Physics",
+    "Statistics"
+  ],
+  "Faculty of Science Laboratory Technology": [
+    "Science Laboratory Technology"
+  ],
+  "Faculty of Social Sciences": [
+    "Economics",
+    "Geography & Regional Planning",
+    "Political Science",
+    "Psychology",
+    "Social Work",
+    "Sociology & Anthropology"
+  ],
+  "Faculty of Veterinary Medicine": [
+    "Veterinary Anatomy",
+    "Veterinary Medicine",
+    "Veterinary Microbiology",
+    "Veterinary Pathology",
+    "Veterinary Physiology & Pharmacology",
+    "Veterinary Public Health & Preventive Medicine",
+    "Veterinary Surgery & Radiology"
+  ],
+  "Faculty of Vocational & Technical Education": [
+    "Agricultural & Home Economics Education",
+    "Business & Computer Education",
+    "Fine & Industrial Arts Education",
+    "Technical & Engineering Education"
+  ],
+  "College of Petroleum & Gas Engineering (PTI Campus)": [
+    "Gas Engineering",
+    "Petroleum Engineering"
+  ],
+  "Institute of Public Administration & Health Services Management": [
+    "Health Services Management",
+    "Public Administration"
+  ],
+  "Centre for General Studies": [
+    "General Studies (GST)"
+  ],
+  "School of Postgraduate Studies": [
+    "Postgraduate — All Faculties"
+  ],
+
+  // ── ADDITIONAL FACULTIES / DEPARTMENTS ──────────────────────────────
+  "School of Health Sciences & Environment (HSE)": [
+    "Community Health & Primary Care",
+    "Environmental Health Sciences",
+    "Health Administration & Management",
+    "Public Health & Epidemiology",
+    "Occupational Health & Safety"
+  ],
+  "Faculty of Human Kinetics & Sports Science (HKS)": [
+    "Exercise & Sports Science",
+    "Human Performance & Coaching",
+    "Physical & Health Education",
+    "Recreation & Leisure Management",
+    "Sports Management & Administration"
+  ],
+  "School of Electrical Engineering & Computer Practice (EECP)": [
+    "Electrical Power Systems",
+    "Electronics & Instrumentation",
+    "Computer Engineering Practice",
+    "Telecommunications Engineering",
+    "Control Systems & Automation"
+  ],
+  "School of Art, Design & Technology (ADT)": [
+    "Graphic Design & Visual Communication",
+    "Industrial & Product Design",
+    "Digital Arts & Animation",
+    "Fashion Design & Technology",
+    "Interior Architecture & Design"
+  ],
+  "Department of Demography & Social Statistics (DEM)": [
+    "Demography & Population Studies",
+    "Social Statistics",
+    "Data Analysis & Survey Methods"
+  ],
+  "School of Defence & Security Studies (DEF)": [
+    "Defence & Strategic Studies",
+    "Peace & Conflict Resolution",
+    "Security Management & Intelligence",
+    "International Security & Diplomacy"
+  ],
+  "Centre for Information Technology (CIT)": [
+    "Information Technology Practice",
+    "Digital Literacy & IT Certification",
+    "Network Administration & Infrastructure",
+    "Database Management & Systems",
+    "Cybersecurity Fundamentals"
+  ],
+};
+
+const SQUADS = [
+  { id:"electric", label:"Electric Blue",  hex:"#2563EB", glow:"#60A5FA", emoji:"⚡" },
+  { id:"solar",    label:"Solar Yellow",   hex:"#EAB308", glow:"#FDE047", emoji:"☀️" },
+  { id:"nova",     label:"Nova Purple",    hex:"#7C3AED", glow:"#A78BFA", emoji:"🔮" },
+  { id:"jade",     label:"Jade Green",     hex:"#059669", glow:"#34D399", emoji:"🌿" },
+  { id:"inferno",  label:"Inferno Red",    hex:"#DC2626", glow:"#F87171", emoji:"🔥" },
+  { id:"cosmic",   label:"Cosmic Pink",    hex:"#DB2777", glow:"#F472B6", emoji:"✨" },
+  { id:"midnight", label:"Midnight Black", hex:"#1a1a1a", glow:"#555555", emoji:"🖤", darkText:false },
+  { id:"ghost",    label:"Ghost White",    hex:"#E8E8E8", glow:"#FFFFFF", emoji:"🤍", darkText:true  },
+];
+
+// ===================== CAPACITY CONFIG =====================
+const TOTAL_MAX    = 232;  // hard cap across all squads
+const SQUAD_MAX    = 29;   // per-squad cap (29 × 8 = 232)
+
+// ===================== STATE =====================
+let state = { name:"", email:"", phone:"", faculty:"", department:"", squad:"", level:"", passId:"" };
+let touched = {};
+
+function generatePassId() {
+  return "REP-" + Math.random().toString(36).substring(2,6).toUpperCase() + "-" + Date.now().toString(36).toUpperCase().slice(-4);
+}
+
+// ===================== INIT =====================
+window.addEventListener('DOMContentLoaded', () => {
+  spawnParticles();
+  buildFacultySelect();
+  state.passId = generatePassId();
+  loadSquadCounts().then(() => {
+    buildSquadGrid();
+    refreshCapacityBar();
+  });
+});
+
+function spawnParticles() {
+  const container = document.getElementById('hero-particles');
+  const colors = ['#2563EB','#EAB308','#DC2626','#FFFFFF','#00F5FF','#FF006E','#7C3AED'];
+  for (let i = 0; i < 40; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.cssText = `
+      left:${Math.random()*100}%;
+      top:${Math.random()*100}%;
+      background:${colors[i % colors.length]};
+      animation-duration:${4+Math.random()*6}s;
+      animation-delay:${Math.random()*8}s;
+      width:${2+Math.random()*3}px;
+      height:${2+Math.random()*3}px;
+    `;
+    container.appendChild(p);
+  }
+}
+
+function buildFacultySelect() {
+  const sel = document.getElementById('sel-faculty');
+  Object.keys(FACULTIES).forEach(f => {
+    const opt = document.createElement('option');
+    opt.value = f; opt.textContent = f;
+    sel.appendChild(opt);
+  });
+  // Always add "Other" at the bottom
+  const other = document.createElement('option');
+  other.value = '__other__';
+  other.textContent = '✏️ My faculty is not listed — enter manually';
+  sel.appendChild(other);
+}
+
+// ===================== SQUAD CAPACITY (FIREBASE + FALLBACK) =====================
+let squadCounts = {}; // { squadId: count }
+
+async function loadSquadCounts() {
+  if (FIREBASE_ENABLED) {
+    try {
+      const res = await fetch(`${FIREBASE_DB_URL}/${FIREBASE_PATH}.json`, { cache: 'no-cache' });
+      if (res.ok) {
+        const data = await res.json();
+        squadCounts = (data && typeof data === 'object') ? data : {};
+      }
+    } catch(e) {
+      // fall through to localStorage
+      loadSquadFromLocal();
+    }
+  } else {
+    loadSquadFromLocal();
+  }
+  // Ensure all squads exist
+  SQUADS.forEach(sq => { if (squadCounts[sq.id] === undefined) squadCounts[sq.id] = 0; });
+}
+
+function loadSquadFromLocal() {
+  try {
+    const raw = localStorage.getItem('reps250_squad_counts_v2');
+    squadCounts = raw ? JSON.parse(raw) : {};
+  } catch(e) { squadCounts = {}; }
+}
+
+async function saveSquadCounts() {
+  if (FIREBASE_ENABLED) {
+    try {
+      await fetch(`${FIREBASE_DB_URL}/${FIREBASE_PATH}.json`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(squadCounts)
+      });
+    } catch(e) { saveSquadToLocal(); }
+  } else {
+    saveSquadToLocal();
+  }
+}
+
+function saveSquadToLocal() {
+  try { localStorage.setItem('reps250_squad_counts_v2', JSON.stringify(squadCounts)); } catch(e) {}
+}
+
+function totalRegistered() {
+  return Object.values(squadCounts).reduce((a, b) => a + b, 0);
+}
+
+function refreshCapacityBar() {
+  const total = totalRegistered();
+  const pct   = Math.min(100, (total / TOTAL_MAX) * 100);
+  const left  = TOTAL_MAX - total;
+  const fill  = document.getElementById('capacity-fill');
+  const text  = document.getElementById('capacity-text');
+  const count = document.getElementById('capacity-count');
+  if (fill)  fill.style.width = pct + '%';
+  if (count) count.textContent = `${total} / ${TOTAL_MAX}`;
+  if (text) {
+    if (left <= 0)       text.textContent = '🔴 No spots left';
+    else if (left <= 20) text.textContent = `⚠️ Only ${left} spots left!`;
+    else                 text.textContent = `${left} spots still open`;
+  }
+}
+
+function refreshSquadButtons() {
+  SQUADS.forEach(sq => {
+    const btn = document.getElementById('squad-' + sq.id);
+    if (!btn) return;
+    const count = squadCounts[sq.id] || 0;
+    const full  = count >= SQUAD_MAX;
+    const left  = SQUAD_MAX - count;
+
+    // Hide/show
+    btn.classList.toggle('squad-full', full);
+
+    // Update count label
+    const countEl = btn.querySelector('.squad-count');
+    if (countEl) {
+      if (full) {
+        countEl.textContent = 'FULL';
+        countEl.className = 'squad-count almost';
+      } else if (left <= 5) {
+        countEl.textContent = `${left} spot${left===1?'':'s'} left`;
+        countEl.className = 'squad-count almost';
+      } else {
+        countEl.textContent = `${left} spots left`;
+        countEl.className = 'squad-count ok';
+      }
+    }
+  });
+}
+
+function buildSquadGrid() {
+  const grid = document.getElementById('squad-grid');
+  grid.innerHTML = '';
+  SQUADS.forEach(sq => {
+    const count = squadCounts[sq.id] || 0;
+    const full  = count >= SQUAD_MAX;
+    const left  = SQUAD_MAX - count;
+
+    const btn = document.createElement('button');
+    btn.className = 'squad-btn' + (sq.darkText ? ' dark-text' : '') + (full ? ' squad-full' : '');
+    btn.id = 'squad-' + sq.id;
+    btn.type = 'button';
+    btn.setAttribute('role','radio');
+    btn.setAttribute('aria-checked','false');
+    btn.setAttribute('aria-label', sq.label + ' squad');
+    btn.style.setProperty('--sq-hex', sq.hex);
+
+    let countLabel, countClass;
+    if (full)        { countLabel = 'FULL';              countClass = 'almost'; }
+    else if (left<=5){ countLabel = `${left} spot${left===1?'':'s'} left`; countClass = 'almost'; }
+    else             { countLabel = `${left} spots left`; countClass = 'ok'; }
+
+    // Ghost White squad needs a border so it's visible on dark bg
+    const extraStyle = sq.id === 'ghost' ? 'border: 1.5px solid rgba(255,255,255,0.25);' : '';
+
+    btn.innerHTML = `
+      <span class="squad-emoji">${sq.emoji}</span>
+      <div class="squad-swatch" style="background:${sq.hex};${sq.id==='ghost'?'border:1px solid rgba(0,0,0,0.15);':''}"></div>
+      <div class="squad-name">${sq.label}</div>
+      <div class="squad-sub mono">Squad</div>
+      <div class="squad-count ${countClass}">${countLabel}</div>
+    `;
+    if (extraStyle) btn.style.cssText += extraStyle;
+
+    btn.addEventListener('click', () => selectSquad(sq.id));
+    btn.addEventListener('touchend', (e) => { e.preventDefault(); selectSquad(sq.id); }, {passive:false});
+    grid.appendChild(btn);
+  });
+}
+
+// ===================== PAYMENT POPUP =====================
+function showPaymentPopup() {
+  const overlay = document.getElementById('payment-overlay');
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePaymentPopup() {
+  const overlay = document.getElementById('payment-overlay');
+  overlay.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function proceedToRegister() {
+  closePaymentPopup();
+  _openForm();
+}
+
+function copyAccountNumber() {
+  const acctNum = '5076601466';
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(acctNum).then(() => {
+      setCopySuccess();
+    }).catch(() => fallbackCopy(acctNum));
+  } else {
+    fallbackCopy(acctNum);
+  }
+}
+
+function fallbackCopy(text) {
+  const el = document.createElement('input');
+  el.value = text; document.body.appendChild(el);
+  el.select(); document.execCommand('copy');
+  document.body.removeChild(el);
+  setCopySuccess();
+}
+
+function setCopySuccess() {
+  const btn = document.getElementById('copy-btn');
+  const icon = document.getElementById('copy-icon');
+  const txt  = document.getElementById('copy-text');
+  if (!btn) return;
+  btn.classList.add('copied');
+  icon.textContent = '✓';
+  txt.textContent  = 'Copied!';
+  if (navigator.vibrate) navigator.vibrate([30, 20, 30]);
+  showToast('✓ Account number copied!');
+  setTimeout(() => {
+    btn.classList.remove('copied');
+    icon.textContent = '📋';
+    txt.textContent  = 'Copy Account Number';
+  }, 2500);
+}
+
+// Close on overlay click (outside card)
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('payment-overlay').addEventListener('click', function(e) {
+    if (e.target === this) closePaymentPopup();
+  });
+  // Escape key closes popup
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closePaymentPopup();
+  });
+});
+
+// ===================== NAVIGATION =====================
+function goToForm() {
+  // Show payment popup first — form opens only after user confirms payment
+  showPaymentPopup();
+}
+
+function _openForm() {
+  addRipple(document.querySelector('.cta-btn'), event);
+  // Hide all landing sections
+  ['screen-hero','screen-about','screen-bonding','screen-games','screen-lineup'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.add('hidden');
+  });
+  document.querySelector('.reg-cta-section') && document.querySelector('.reg-cta-section').classList.add('hidden');
+  document.querySelector('.ticker-wrap') && document.querySelector('.ticker-wrap').classList.add('hidden');
+  document.querySelector('.cover-footer') && (document.querySelector('.cover-footer').style.display = 'none');
+  document.getElementById('float-nav').style.display = 'none';
+  document.getElementById('screen-form').classList.remove('hidden');
+  window.scrollTo(0,0);
+  // Refresh counts in case others registered since page load
+  loadSquadCounts().then(() => {
+    buildSquadGrid();
+    refreshCapacityBar();
+  });
+  // Poll every 15 seconds while form is open for real-time slot updates
+  if (window._slotPollInterval) clearInterval(window._slotPollInterval);
+  window._slotPollInterval = setInterval(() => {
+    if (!document.getElementById('screen-form').classList.contains('hidden')) {
+      loadSquadCounts().then(() => {
+        refreshSquadButtons();
+        refreshCapacityBar();
+      });
+    } else {
+      clearInterval(window._slotPollInterval);
+    }
+  }, 15000);
+}
+
+function goToHero() {
+  document.getElementById('screen-pass').classList.add('hidden');
+  // Show all landing sections
+  ['screen-hero','screen-about','screen-bonding','screen-games','screen-lineup'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.remove('hidden');
+  });
+  document.querySelector('.reg-cta-section') && document.querySelector('.reg-cta-section').classList.remove('hidden');
+  document.querySelector('.ticker-wrap') && document.querySelector('.ticker-wrap').classList.remove('hidden');
+  document.querySelector('.cover-footer') && (document.querySelector('.cover-footer').style.display = '');
+  resetForm();
+  window.scrollTo(0,0);
+}
+
+function goToPass() {
+  document.getElementById('screen-form').classList.add('hidden');
+  document.getElementById('screen-pass').classList.remove('hidden');
+  updateSteps(3);
+  setTimeout(buildPass, 80);
+  setTimeout(spawnConfetti, 300);
+  window.scrollTo(0,0);
+}
+
+// ===================== FACULTY / DEPT =====================
+function onFacultyChange(sel) {
+  const val = sel.value;
+  const otherWrap  = document.getElementById('faculty-other-wrap');
+  const otherInput = document.getElementById('inp-faculty-other');
+  const deptSel    = document.getElementById('sel-dept');
+  const deptOtherWrap  = document.getElementById('dept-other-wrap');
+  const deptOtherInput = document.getElementById('inp-dept-other');
+
+  touched.faculty = true;
+  state.department = '';
+  deptSel.innerHTML = '<option value="">— Select your department —</option>';
+  deptSel.disabled = true;
+  deptSel.classList.remove('has-value','has-error');
+  deptOtherWrap.classList.add('hidden');
+  if (deptOtherInput) { deptOtherInput.value = ''; }
+  clearErr('dept');
+
+  if (val === '__other__') {
+    // Show free-text input for faculty
+    otherWrap.classList.remove('hidden');
+    otherInput.value = '';
+    otherInput.focus();
+    state.faculty = '';
+    sel.classList.remove('has-value');
+    clearErr('faculty');
+
+    // Also show free-text for department immediately
+    deptSel.disabled = true;
+    document.getElementById('dept-select-wrap').style.display = 'none';
+    deptOtherWrap.classList.remove('hidden');
+    if (deptOtherInput) deptOtherInput.focus();
+  } else {
+    // Hide other inputs
+    otherWrap.classList.add('hidden');
+    if (otherInput) otherInput.value = '';
+    document.getElementById('dept-select-wrap').style.display = '';
+
+    state.faculty = val;
+    clearErr('faculty');
+
+    if (val) {
+      sel.classList.remove('has-error'); sel.classList.add('has-value');
+      const depts = FACULTIES[val] || [];
+      depts.forEach(d => {
+        const opt = document.createElement('option');
+        opt.value = d; opt.textContent = d;
+        deptSel.appendChild(opt);
+      });
+      // Add "Other" option for department too
+      const otherOpt = document.createElement('option');
+      otherOpt.value = '__other__';
+      otherOpt.textContent = '✏️ My department is not listed — enter manually';
+      deptSel.appendChild(otherOpt);
+      deptSel.disabled = false;
+    } else {
+      sel.classList.remove('has-value');
+    }
+  }
+}
+
+function onFacultyOtherInput(el) {
+  const v = el.value.trim();
+  state.faculty = v;
+  touched.faculty = true;
+  if (v) {
+    el.classList.remove('has-error'); el.classList.add('has-value');
+    clearErr('faculty');
+    // Enable dept free-text
+    document.getElementById('dept-other-wrap').classList.remove('hidden');
+    document.getElementById('dept-select-wrap').style.display = 'none';
+  } else {
+    el.classList.remove('has-value');
+    document.getElementById('dept-other-wrap').classList.add('hidden');
+  }
+}
+
+function onDeptChange(sel) {
+  const val = sel.value;
+  const otherWrap  = document.getElementById('dept-other-wrap');
+  const otherInput = document.getElementById('inp-dept-other');
+  touched.department = true;
+
+  if (val === '__other__') {
+    otherWrap.classList.remove('hidden');
+    if (otherInput) { otherInput.value = ''; otherInput.focus(); }
+    state.department = '';
+    sel.classList.remove('has-value');
+    clearErr('dept');
+  } else {
+    otherWrap.classList.add('hidden');
+    if (otherInput) otherInput.value = '';
+    state.department = val;
+    if (val) {
+      sel.classList.remove('has-error'); sel.classList.add('has-value');
+      clearErr('dept');
+    } else {
+      sel.classList.remove('has-value');
+    }
+  }
+}
+
+function onDeptOtherInput(el) {
+  const v = el.value.trim();
+  state.department = v;
+  touched.department = true;
+  if (v) {
+    el.classList.remove('has-error'); el.classList.add('has-value');
+    clearErr('dept');
+  } else {
+    el.classList.remove('has-value');
+  }
+}
+
+// ===================== LIVE VALIDATION =====================
+function liveValidate(field, el) {
+  touched[field] = true;
+  const v = el.value.trim();
+
+  if (field === 'name')       { state.name = v; validateName(v); }
+  if (field === 'email')      { state.email = v; validateEmail(v); }
+  if (field === 'department') { state.department = el.value; validateDept(el.value); }
+  if (field === 'level')      { state.level = el.value; validateLevel(el.value); }
+}
+
+function validateName(v) {
+  if (!v) { showErr('name'); return false; }
+  clearErr('name');
+  showIcon('name','✓', '#34D399');
+  return true;
+}
+function validateEmail(v) {
+  const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  if (!v || !ok) { showErr('email'); return false; }
+  clearErr('email');
+  showIcon('email','✓', '#34D399');
+  return true;
+}
+function validateDept(v) {
+  if (!v) { showErr('dept'); return false; }
+  clearErr('dept'); return true;
+}
+function validateLevel(v) {
+  if (!v) { showErr('level'); return false; }
+  clearErr('level'); return true;
+}
+function validateFaculty(v) {
+  if (!v) { showErr('faculty'); return false; }
+  clearErr('faculty'); return true;
+}
+function validateSquad(v) {
+  if (!v) { showErr('squad'); return false; }
+  clearErr('squad'); return true;
+}
+
+function showErr(key) {
+  const errEl = document.getElementById('err-'+key);
+  const inpEl = document.getElementById('inp-'+key) || document.getElementById('sel-'+key==='dept'?'sel-dept':key==='faculty'?'sel-faculty':key==='level'?'sel-level':'inp-'+key);
+  if (errEl) errEl.classList.remove('hidden');
+  if (inpEl) { inpEl.classList.add('has-error'); inpEl.classList.remove('has-value'); }
+  const lbl = document.getElementById('lbl-'+key);
+  if (lbl) lbl.className = 'field-label error';
+}
+function clearErr(key) {
+  const errEl = document.getElementById('err-'+key);
+  const inpEl = document.getElementById('inp-'+key) || document.getElementById('sel-'+key==='dept'?'sel-dept':key==='faculty'?'sel-faculty':key==='level'?'sel-level':'inp-'+key);
+  if (errEl) errEl.classList.add('hidden');
+  if (inpEl) { inpEl.classList.remove('has-error'); if(inpEl.value) inpEl.classList.add('has-value'); }
+  const lbl = document.getElementById('lbl-'+key);
+  if (lbl) lbl.className = 'field-label normal';
+}
+function showIcon(key, icon, color) {
+  const el = document.getElementById('icon-'+key);
+  if (el) { el.textContent = icon; el.style.color = color; el.classList.add('visible'); }
+}
+
+// ===================== SQUAD SELECT =====================
+function selectSquad(id) {
+  const sq = SQUADS.find(s => s.id === id);
+  if (!sq) return;
+  // Don't allow selecting a full squad
+  if ((squadCounts[id] || 0) >= SQUAD_MAX) {
+    showToast('⚠️ That squad is full — pick another color!');
+    return;
+  }
+  state.squad = id;
+  SQUADS.forEach(s => {
+    const btn = document.getElementById('squad-'+s.id);
+    if (!btn) return;
+    if (s.id === id) {
+      btn.classList.add('selected');
+      btn.setAttribute('aria-checked','true');
+      btn.style.borderColor = s.hex;
+      btn.style.boxShadow = `0 0 22px ${s.hex}88`;
+      const swatch = btn.querySelector('.squad-swatch');
+      if (swatch) swatch.style.boxShadow = `0 0 14px ${s.glow}`;
+    } else {
+      btn.classList.remove('selected');
+      btn.setAttribute('aria-checked','false');
+      btn.style.borderColor = s.id === 'ghost' ? 'rgba(255,255,255,0.25)' : 'rgba(255,255,255,0.08)';
+      btn.style.boxShadow = 'none';
+      const swatch = btn.querySelector('.squad-swatch');
+      if (swatch) swatch.style.boxShadow = 'none';
+    }
+  });
+  clearErr('squad');
+  if (navigator.vibrate) navigator.vibrate(30);
+}
+
+// ===================== SCROLL HELPERS =====================
+function scrollToAbout() {
+  document.getElementById('screen-about').scrollIntoView({behavior:'smooth'});
+}
+function scrollSec(id) {
+  event.preventDefault();
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+
+// Show floating nav after scrolling past hero
+window.addEventListener('scroll', () => {
+  const hero = document.getElementById('screen-hero');
+  const nav  = document.getElementById('float-nav');
+  if (!hero || !nav) return;
+  const heroBottom = hero.getBoundingClientRect().bottom;
+  if (heroBottom < 0) {
+    nav.style.display = 'flex';
+  } else {
+    nav.style.display = 'none';
+  }
+});
+
+// ===================== CONFIGURATION =====================
+// ─── Firebase Realtime Database ───────────────────────────────
+// 1. Go to https://console.firebase.google.com → Create project
+// 2. Build → Realtime Database → Create database (test mode)
+// 3. Copy the database URL (looks like: https://YOUR-ID-default-rtdb.firebaseio.com)
+// 4. Paste it below (without trailing slash)
+const FIREBASE_DB_URL = 'https://YOUR-PROJECT-ID-default-rtdb.firebaseio.com';
+const FIREBASE_PATH   = 'reps250_squad_counts_v3';
+const FIREBASE_ENABLED = !FIREBASE_DB_URL.includes('YOUR-PROJECT');
+
+// ─── EmailJS ──────────────────────────────────────────────────
+// 1. Go to https://www.emailjs.com → Sign up free
+// 2. Add an Email Service (Gmail, Outlook, etc.)
+// 3. Create TWO email templates:
+//    • Template A (attendee): Variables: {{to_email}}, {{attendee_name}}, {{pass_id}}, {{squad}}, {{faculty}}, {{level}}, {{event_date}}, {{event_venue}}
+//    • Template B (organizer): Variables: {{name}}, {{email}}, {{phone}}, {{faculty}}, {{department}}, {{level}}, {{squad}}, {{pass_id}}, {{registered_at}}
+// 4. Fill in the IDs below
+const EMAILJS_PUBLIC_KEY         = 'YOUR_EMAILJS_PUBLIC_KEY';
+const EMAILJS_SERVICE_ID         = 'YOUR_SERVICE_ID';
+const EMAILJS_ATTENDEE_TEMPLATE  = 'template_attendee_pass';
+const EMAILJS_ORGANIZER_TEMPLATE = 'template_organizer_notify';
+const EMAILJS_ENABLED = !EMAILJS_PUBLIC_KEY.includes('YOUR_');
+
+// ─── Organizer Email ──────────────────────────────────────────
+// Replace with the organizer's actual email address
+const ORGANIZER_EMAIL = 'YOUR-EMAIL@HERE.COM';
+
+// ===================== SUBMIT =====================
+function handleSubmit(e) {
+  addRipple(document.getElementById('submit-btn'), e);
+  state.name      = document.getElementById('inp-name').value.trim();
+  state.email     = document.getElementById('inp-email').value.trim();
+  state.phone     = document.getElementById('inp-phone').value.trim();
+
+  // Faculty — use free-text if "Other" was selected
+  const facSel = document.getElementById('sel-faculty');
+  const facOther = document.getElementById('inp-faculty-other');
+  if (facSel.value === '__other__') {
+    state.faculty = (facOther && facOther.value.trim()) || '';
+  } else {
+    state.faculty = facSel.value;
+  }
+
+  // Department — use free-text if "Other" was selected or faculty was custom
+  const deptSel = document.getElementById('sel-dept');
+  const deptOther = document.getElementById('inp-dept-other');
+  if (deptSel.value === '__other__' || !document.getElementById('dept-other-wrap').classList.contains('hidden')) {
+    state.department = (deptOther && deptOther.value.trim()) || deptSel.value;
+    if (state.department === '__other__') state.department = (deptOther && deptOther.value.trim()) || '';
+  } else {
+    state.department = deptSel.value;
+  }
+
+  state.level = document.getElementById('sel-level').value;
+
+  let ok = true;
+  if (!validateName(state.name))      { touched.name=true;   showErr('name');    ok=false; }
+  if (!validateEmail(state.email))    { touched.email=true;  showErr('email');   ok=false; }
+  if (!validateFaculty(state.faculty)){ touched.faculty=true;showErr('faculty'); ok=false; }
+  if (!validateDept(state.department)){ touched.dept=true;   showErr('dept');    ok=false; }
+  if (!validateLevel(state.level))    { touched.level=true;  showErr('level');   ok=false; }
+  if (!validateSquad(state.squad))    { touched.squad=true;  showErr('squad');   ok=false; }
+
+  if (!ok) {
+    const btn = document.getElementById('submit-btn');
+    btn.classList.add('shake');
+    setTimeout(() => btn.classList.remove('shake'), 400);
+    const firstErr = document.querySelector('.field-error:not(.hidden)');
+    if (firstErr) firstErr.scrollIntoView({behavior:'smooth', block:'center'});
+    showToast('⚠️ Please fill in all required fields');
+    return;
+  }
+
+  // Final capacity checks
+  const total = totalRegistered();
+  if (total >= TOTAL_MAX) {
+    showToast('⚠️ Sorry — registration is now full (230 max reached)!');
+    return;
+  }
+  if ((squadCounts[state.squad] || 0) >= SQUAD_MAX) {
+    showToast('⚠️ That squad just filled up — pick another color!');
+    buildSquadGrid();
+    refreshCapacityBar();
+    return;
+  }
+
+  // Increment squad count and save
+  squadCounts[state.squad] = (squadCounts[state.squad] || 0) + 1;
+  saveSquadCounts();
+  refreshCapacityBar();
+  refreshSquadButtons();
+
+  // Send registration notification to organizer via mailto
+  sendRegistrationEmail();
+
+  updateSteps(2);
+  showToast('✅ Pass generated! Loading...');
+  setTimeout(goToPass, 600);
+}
+
+function sendRegistrationEmail() {
+  const sq = SQUADS.find(s => s.id === state.squad) || SQUADS[0];
+
+  if (EMAILJS_ENABLED) {
+    // ─── Initialize EmailJS ──────────────────────────────────────
+    try { emailjs.init(EMAILJS_PUBLIC_KEY); } catch(e) {}
+
+    // 1. Send pass confirmation to ATTENDEE
+    const attendeeParams = {
+      to_email:     state.email,
+      attendee_name: state.name,
+      pass_id:      state.passId,
+      squad:        sq.emoji + ' ' + sq.label,
+      faculty:      state.faculty,
+      department:   state.department,
+      level:        state.level,
+      event_date:   'Saturday, May 23rd, 2025',
+      event_venue:  'Glitch Arcade — Doors open 1:00 PM'
+    };
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_ATTENDEE_TEMPLATE, attendeeParams)
+      .catch(err => console.warn('Attendee email failed:', err));
+
+    // 2. Send registration notification to ORGANIZER
+    const orgParams = {
+      to_email:      ORGANIZER_EMAIL,
+      name:          state.name,
+      email:         state.email,
+      phone:         state.phone || 'Not provided',
+      faculty:       state.faculty,
+      department:    state.department,
+      level:         state.level,
+      squad:         sq.emoji + ' ' + sq.label,
+      pass_id:       state.passId,
+      registered_at: new Date().toLocaleString('en-NG', { timeZone: 'Africa/Lagos' })
+    };
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_ORGANIZER_TEMPLATE, orgParams)
+      .catch(err => console.warn('Organizer email failed:', err));
+
+  } else {
+    // ─── Fallback: Open mailto: for organizer ────────────────────
+    const subject = encodeURIComponent(`[250 Reps Registration] ${state.name} — Pass ${state.passId}`);
+    const body = encodeURIComponent(
+`NEW REGISTRATION — 250 REPS EXPERIENCE
+=======================================
+Pass ID:    ${state.passId}
+Name:       ${state.name}
+Email:      ${state.email}
+Phone:      ${state.phone || 'Not provided'}
+Faculty:    ${state.faculty}
+Department: ${state.department}
+Level:      ${state.level}
+Squad:      ${sq.emoji} ${sq.label}
+Registered: ${new Date().toLocaleString()}
+=======================================
+Event: Saturday, May 23rd · 1PM · Glitch Arcade`
+    );
+    if (ORGANIZER_EMAIL && !ORGANIZER_EMAIL.includes('YOUR-EMAIL')) {
+      window.open(`mailto:${ORGANIZER_EMAIL}?subject=${subject}&body=${body}`, '_blank');
+    }
+  }
+}
+
+// ===================== PROGRESS STEPS =====================
+function updateSteps(active) {
+  const dots  = [document.getElementById('step1'), document.getElementById('step2'), document.getElementById('step3')];
+  const lines = [document.getElementById('line1'),  document.getElementById('line2')];
+  dots.forEach((d,i) => {
+    d.classList.remove('active','done','inactive');
+    if (i+1 < active) { d.classList.add('done'); d.textContent = '✓'; }
+    else if (i+1 === active) d.classList.add('active');
+    else d.classList.add('inactive');
+  });
+  lines.forEach((l,i) => {
+    l.classList.toggle('done', i+1 < active);
+  });
+}
+
+// ===================== BUILD PASS =====================
+function buildPass() {
+  const sq = SQUADS.find(s => s.id === state.squad) || SQUADS[0];
+
+  // Orb color
+  document.getElementById('pass-orb1').style.background = sq.hex;
+
+  // Gradient border ring (more vivid)
+  const ring = document.getElementById('pass-border');
+  ring.style.background = `linear-gradient(135deg, ${sq.hex}, #EAB308, ${sq.hex}, ${sq.glow})`;
+
+  // Top band (vibrant gradient)
+  const top = document.getElementById('pass-top-band');
+  top.style.background = `linear-gradient(135deg, ${sq.hex} 0%, ${sq.glow} 60%, ${sq.hex} 100%)`;
+
+  // Hole borders
+  document.getElementById('pass-hole-l').style.border = `2px solid ${sq.hex}`;
+  document.getElementById('pass-hole-r').style.border = `2px solid ${sq.hex}`;
+
+  // Pass body — squad color tinted background
+  const passInner = document.querySelector('.pass-inner');
+  if (passInner) {
+    passInner.style.background = `linear-gradient(145deg, #0A1435 0%, #0D1840 50%, ${sq.hex}20 100%)`;
+    passInner.style.boxShadow  = `inset 0 0 60px ${sq.hex}12`;
+  }
+
+  // Pass fields
+  document.getElementById('pf-name').textContent   = state.name;
+  document.getElementById('pf-squad').textContent  = sq.emoji + ' ' + sq.label;
+  document.getElementById('pf-faculty').textContent = state.faculty;
+  document.getElementById('pf-dept').textContent   = state.department;
+  document.getElementById('pf-level').textContent  = state.level;
+  document.getElementById('pf-passid').textContent = state.passId;
+  document.getElementById('pf-passid').style.color = sq.glow;
+  document.getElementById('pf-email').textContent  = state.email;
+  document.getElementById('pf-email').style.color  = sq.glow;
+
+  // Squad bar
+  const bar = document.getElementById('pass-squad-bar');
+  bar.style.background = `linear-gradient(135deg, ${sq.hex}33, ${sq.hex}08)`;
+  bar.style.border = `1px solid ${sq.hex}55`;
+  const swatch = document.getElementById('pass-squad-swatch');
+  swatch.style.background = `linear-gradient(135deg, ${sq.hex}, ${sq.glow})`;
+  swatch.style.boxShadow  = `0 0 20px ${sq.hex}, 0 0 40px ${sq.hex}66`;
+  document.getElementById('pass-squad-name').textContent = sq.emoji + ' ' + sq.label + ' Squad';
+
+  // Footer
+  const footer = document.getElementById('pass-footer');
+  footer.style.background    = `${sq.hex}22`;
+  footer.style.borderTopColor = `${sq.hex}44`;
+
+  // QR decoration
+  const qrGrid = document.getElementById('qr-grid');
+  qrGrid.style.background = `${sq.hex}15`;
+  qrGrid.style.border = `1px solid ${sq.hex}44`;
+  qrGrid.innerHTML = '';
+  const seed = state.passId.charCodeAt(4) || 42;
+  for (let i = 0; i < 25; i++) {
+    const cell = document.createElement('div');
+    cell.className = 'qr-cell';
+    cell.style.background = ((seed * (i+7)) % 3 !== 0) ? sq.hex : 'transparent';
+    qrGrid.appendChild(cell);
+  }
+
+  // Save image button
+  const saveImgBtn = document.getElementById('save-img-btn');
+  if (saveImgBtn) {
+    saveImgBtn.style.background = `linear-gradient(135deg, ${sq.hex}, ${sq.glow})`;
+    saveImgBtn.style.boxShadow  = `0 0 24px ${sq.hex}55`;
+  }
+
+  // Email button (Send to Email — uses mailto as reliable fallback)
+  const attendeeSubject = encodeURIComponent(`Your 250 Reps Experience Pass — ${state.passId}`);
+  const attendeeBody = encodeURIComponent(
+`Hey ${state.name}! 🎉
+
+Your registration for the 250 Reps Experience is confirmed!
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+YOUR PASS DETAILS
+━━━━━━━━━━━━━━━━━━━━━━━━
+Pass ID:    ${state.passId}
+Name:       ${state.name}
+Squad:      ${sq.emoji} ${sq.label}
+Faculty:    ${state.faculty}
+Level:      ${state.level}
+
+EVENT INFO
+━━━━━━━━━━━━━━━━━━━━━━━━
+📅 Saturday, May 23rd
+⏰ 1:00 PM (Doors open)
+📍 Glitch Arcade
+
+What to expect: Games, food, refreshments, bonding activities, prizes & so much more!
+
+Screenshot this email or save your pass. See you there! 💙
+— The 250 Reps Team`
+  );
+  const emailHref = `mailto:${state.email}?subject=${attendeeSubject}&body=${attendeeBody}`;
+  const emailBtn = document.getElementById('email-btn');
+  emailBtn.href = emailHref;
+  emailBtn.style.background = `linear-gradient(135deg, ${sq.hex}, ${sq.glow})`;
+  emailBtn.style.boxShadow  = `0 0 30px ${sq.hex}55`;
+
+  // Animate card
+  const card = document.getElementById('pass-card');
+  card.classList.add('animated');
+}
+
+// ===================== SAVE PASS AS IMAGE =====================
+async function savePassAsImage() {
+  const btn = document.getElementById('save-img-btn');
+  if (btn) { btn.textContent = '⏳ Saving...'; btn.disabled = true; }
+
+  try {
+    const card = document.getElementById('pass-card');
+    const canvas = await html2canvas(card, {
+      backgroundColor: null,
+      scale: 2.5,
+      useCORS: true,
+      logging: false,
+      allowTaint: true,
+      removeContainer: true,
+    });
+
+    const sq = SQUADS.find(s => s.id === state.squad) || SQUADS[0];
+    const link = document.createElement('a');
+    link.download = `250RepsPass-${state.name.replace(/\s+/g,'-')}-${sq.label.replace(/\s+/g,'-')}.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+
+    showToast('✅ Pass saved! Check your downloads');
+    if (navigator.vibrate) navigator.vibrate([30, 20, 50]);
+  } catch(err) {
+    console.warn('Image save failed:', err);
+    showToast('⚠️ Tap the screenshot button on your phone to save');
+  } finally {
+    const sq2 = SQUADS.find(s => s.id === state.squad) || SQUADS[0];
+    if (btn) {
+      btn.textContent = '📸 Save Pass';
+      btn.disabled = false;
+      btn.style.background = `linear-gradient(135deg, ${sq2.hex}, ${sq2.glow})`;
+    }
+  }
+}
+
+// ===================== CONFETTI =====================
+function spawnConfetti() {
+  const sq = SQUADS.find(s => s.id === state.squad) || SQUADS[0];
+  const container = document.getElementById('confetti-container');
+  container.innerHTML = '';
+  const colors = [sq.hex, '#EAB308', '#ffffff', '#DC2626', '#00F5FF', '#FF006E', '#FFD700', '#000000'];
+  for (let i = 0; i < 45; i++) {
+    const el = document.createElement('div');
+    el.className = 'confetti-piece';
+    const size  = 5 + Math.random() * 10;
+    const delay = Math.random() * 2;
+    const dur   = 2.2 + Math.random() * 3;
+    el.style.cssText = `
+      left:${Math.random()*100}%;
+      width:${size}px; height:${size}px;
+      background:${colors[i%4]};
+      border-radius:${i%3===0?'0':'50%'};
+      animation-delay:${delay}s;
+      animation-duration:${dur}s;
+    `;
+    container.appendChild(el);
+    // Remove after animation
+    setTimeout(() => el.remove(), (delay + dur + 0.2) * 1000);
+  }
+}
+
+// ===================== RESET =====================
+function resetForm() {
+  state = { name:"", email:"", phone:"", faculty:"", department:"", squad:"", level:"", passId:generatePassId() };
+  touched = {};
+  ['name','email','phone'].forEach(k => {
+    const el = document.getElementById('inp-'+k);
+    if (el) { el.value=''; el.classList.remove('has-error','has-value'); }
+  });
+  ['faculty','dept','level'].forEach(k => {
+    const el = document.getElementById('sel-'+k);
+    if (el) { el.value=''; el.classList.remove('has-error','has-value'); }
+  });
+  // Clear and hide "Other" inputs
+  const facOther = document.getElementById('inp-faculty-other');
+  if (facOther) { facOther.value=''; facOther.classList.remove('has-error','has-value'); }
+  document.getElementById('faculty-other-wrap') && document.getElementById('faculty-other-wrap').classList.add('hidden');
+  const deptOther = document.getElementById('inp-dept-other');
+  if (deptOther) { deptOther.value=''; deptOther.classList.remove('has-error','has-value'); }
+  document.getElementById('dept-other-wrap') && document.getElementById('dept-other-wrap').classList.add('hidden');
+  document.getElementById('dept-select-wrap') && (document.getElementById('dept-select-wrap').style.display = '');
+  document.getElementById('sel-dept').disabled = true;
+  ['name','email','faculty','dept','level','squad'].forEach(k => {
+    const el = document.getElementById('err-'+k);
+    if (el) el.classList.add('hidden');
+    const lbl = document.getElementById('lbl-'+k);
+    if (lbl) lbl.className = 'field-label normal';
+    const icon = document.getElementById('icon-'+k);
+    if (icon) { icon.textContent=''; icon.classList.remove('visible'); }
+  });
+  document.getElementById('pass-card').classList.remove('animated');
+  // Refresh squad grid with latest counts from storage
+  loadSquadCounts().then(() => {
+    buildSquadGrid();
+    refreshCapacityBar();
+  });
+  updateSteps(1);
+}
+
+// ===================== RIPPLE =====================
+function addRipple(btn, e) {
+  if (!btn || !e) return;
+  const rect = btn.getBoundingClientRect();
+  const x = (e.clientX || (e.touches&&e.touches[0]&&e.touches[0].clientX) || rect.left+rect.width/2) - rect.left;
+  const y = (e.clientY || (e.touches&&e.touches[0]&&e.touches[0].clientY) || rect.top+rect.height/2) - rect.top;
+  const sz = Math.max(rect.width, rect.height);
+  const rip = document.createElement('span');
+  rip.className = 'ripple-effect';
+  rip.style.cssText = `width:${sz}px;height:${sz}px;left:${x-sz/2}px;top:${y-sz/2}px;`;
+  btn.style.position = 'relative'; btn.style.overflow = 'hidden';
+  btn.appendChild(rip);
+  setTimeout(() => rip.remove(), 650);
+}
+
+// ===================== TOAST =====================
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// ===================== KEYBOARD NAV =====================
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && document.getElementById('screen-form').classList.contains('hidden') === false) {
+    const active = document.activeElement;
+    if (active && (active.tagName === 'INPUT' || active.tagName === 'SELECT')) {
+      // Move to next field on Enter
+      const inputs = Array.from(document.querySelectorAll('.field-input, .field-select'));
+      const idx = inputs.indexOf(active);
+      if (idx >= 0 && idx < inputs.length - 1) {
+        inputs[idx+1].focus();
+      } else {
+        handleSubmit({ clientX: 0, clientY: 0 });
+      }
+    }
+  }
+});
+
+// ===================== IOS SAFE AREA FIX =====================
+(function() {
+  const el = document.documentElement;
+  const check = () => {
+    // trigger layout recalc for iOS bottom safe area
+    el.style.setProperty('--safe-bottom', 'env(safe-area-inset-bottom, 0px)');
+  };
+  check();
+  window.addEventListener('resize', check);
+})();
+</script>
+</body>
+</html>
